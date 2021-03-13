@@ -1,82 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { changeTitlePage } from './../../actions/config';
+import { Link } from 'react-router-dom';
 
 function Sidebar(props) {
-    const handleBaseUrl = (value) => {
-        props.changeTitlePage(value)
-    }
-
     return (
         <div className="left-sidenav">
             <div className="brand mt-2">
-                <a href="#" className="logo">
+                <Link to="/dashboard" onClick={() => props.changeTitlePage('Dashboard')} className="logo">
                     <span style={{ marginRight: 5 }}>
                         <img src={`${props.baseUrl}${process.env.REACT_APP_LOGO_MINI}`} alt="logo-small" className="logo-sm" style={{ width: 55, height: 50 }} />
                     </span>
                     <span className="text-white font-18">
                         {process.env.REACT_APP_NAME}
                     </span>
-                </a>
+                </Link>
             </div>
             <div className="menu-content h-100" data-simplebar>
                 <ul className="metismenu left-sidenav-menu">
                     <li className="mb-2">
-                        <a href="#" onClick={() => handleBaseUrl('Dashboard')} className="custom-nav text-white">
+                        <Link to="/dashboard" onClick={() => props.changeTitlePage('Dashboard')} className={`custom-nav text-white ${(props.splitFullUrl[1] === 'dashboard') ? 'active' : ''}`}>
                             <i className="mdi mdi-monitor-dashboard align-self-center" /><span>Dashboard</span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="mb-2">
-                        <a href="#" onClick={() => handleBaseUrl('Laporan')} className="custom-nav text-white">
+                        <Link to="/" onClick={() => props.changeTitlePage('Laporan')} className={`custom-nav text-white ${(props.splitFullUrl[1] === 'report') ? 'active' : ''}`}>
                             <i className="mdi mdi-clipboard-text-outline align-self-center" /><span>Laporan</span>
-                        </a>
+                        </Link>
                     </li>
                     <hr className="hr-dashed hr-menu" />
                     <li className="mb-2">
-                        <a href="#" onClick={() => handleBaseUrl('Kas & Bank')} className="custom-nav text-white">
+                        <Link to="/account" onClick={() => props.changeTitlePage('Kas & Bank')} className={`custom-nav text-white ${(props.splitFullUrl[1] === 'account' && !props.splitFullUrl[2]) ? 'active' : ''}`}>
                             <i className="mdi mdi-bank align-self-center" /><span>Kas &amp; Bank</span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="mb-2">
-                        <a href="#" onClick={() => handleBaseUrl('Penjualan')} className="custom-nav text-white">
+                        <Link to="/" onClick={() => props.changeTitlePage('Penjualan')} className={`custom-nav text-white ${(props.splitFullUrl[1] === 'invoice') ? 'active' : ''}`}>
                             <i className="mdi mdi-tag-multiple align-self-center" /><span>Penjualan</span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="mb-2">
-                        <a href="#" onClick={() => handleBaseUrl('Pembelian')} className="custom-nav text-white">
+                        <Link to="/" onClick={() => props.changeTitlePage('Pembelian')} className={`custom-nav text-white ${(props.splitFullUrl[1] === 'purchase') ? 'active' : ''}`}>
                             <i className="mdi mdi-cart align-self-center" /><span>Pembelian</span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="mb-2">
-                        <a href="#" onClick={() => handleBaseUrl('Biaya')} className="custom-nav text-white">
+                        <Link to="/" onClick={() => props.changeTitlePage('Biaya')} className={`custom-nav text-white ${(props.splitFullUrl[1] === 'expense') ? 'active' : ''}`}>
                             <i className="mdi mdi-card-plus align-self-center" /><span>Biaya</span>
-                        </a>
+                        </Link>
                     </li>
                     <hr className="hr-dashed hr-menu" />
                     <li className="mb-2">
-                        <a href="#" onClick={() => handleBaseUrl('Kontak')} className="custom-nav text-white">
+                        <Link to="/" onClick={() => props.changeTitlePage('Kontak')} className={`custom-nav text-white ${(props.splitFullUrl[1] === 'contact') ? 'active' : ''}`}>
                             <i className="mdi mdi-contacts align-self-center" /><span>Kontak</span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="mb-2">
-                        <a href="#" onClick={() => handleBaseUrl('Produk')} className="custom-nav text-white">
+                        <Link to="/" onClick={() => props.changeTitlePage('Produk')} className={`custom-nav text-white ${(props.splitFullUrl[1] === 'product') ? 'active' : ''}`}>
                             <i className="mdi mdi-archive align-self-center" /><span>Produk</span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="mb-2">
-                        <a href="#" onClick={() => handleBaseUrl('Pengaturan Aset')} className="custom-nav text-white">
+                        <Link to="/" onClick={() => props.changeTitlePage('Pengaturan Aset')} className={`custom-nav text-white ${(props.splitFullUrl[1] === 'asset') ? 'active' : ''}`}>
                             <i className="mdi mdi-garage align-self-center" /><span>Pengaturan Aset</span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="mb-2">
-                        <a href="#" onClick={() => handleBaseUrl('Daftar Akun')} className="custom-nav text-white">
+                        <Link to="/" onClick={() => props.changeTitlePage('Daftar Akun')} className={`custom-nav text-white ${(props.splitFullUrl[2] === 'chart') ? 'active' : ''}`}>
                             <i className="mdi mdi-clipboard-text align-self-center" /><span>Daftar Akun</span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="mb-2">
-                        <a href="#" onClick={() => handleBaseUrl('Pengaturan')} className="custom-nav text-white">
+                        <Link to="/" onClick={() => props.changeTitlePage('Pengaturan')} className={`custom-nav text-white ${(props.splitFullUrl[1] === 'setting') ? 'active' : ''}`}>
                             <i className="mdi mdi-settings align-self-center" /><span>Settings</span>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>

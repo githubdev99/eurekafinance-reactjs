@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
 
 function Navbar(props) {
     return (
@@ -352,10 +353,10 @@ function Navbar(props) {
                             <img src={`${props.baseUrl}assets/images/users/user-5.jpg`} alt="profile-user" className="rounded-circle thumb-xs" />
                         </a>
                         <div className="dropdown-menu dropdown-menu-right">
-                            <a className="dropdown-item" href="#"><i data-feather="user" className="align-self-center icon-xs icon-dual mr-1" /> Profil Akun</a>
-                            <a className="dropdown-item" href="#"><i data-feather="settings" className="align-self-center icon-xs icon-dual mr-1" /> Settings</a>
+                            <a className="dropdown-item" href="javascript:;"><i data-feather="user" className="align-self-center icon-xs icon-dual mr-1" /> Profil Akun</a>
+                            <a className="dropdown-item" href="javascript:;"><i data-feather="settings" className="align-self-center icon-xs icon-dual mr-1" /> Settings</a>
                             <div className="dropdown-divider mb-0" />
-                            <a className="dropdown-item" href="#"><i data-feather="power" className="align-self-center icon-xs icon-dual mr-1" /> Logout</a>
+                            <a className="dropdown-item" href="javascript:;"><i data-feather="power" className="align-self-center icon-xs icon-dual mr-1" /> Logout</a>
                         </div>
                     </li>
                 </ul>
@@ -368,9 +369,9 @@ function Navbar(props) {
                     </li>
                     <li className="creat-btn">
                         <div className="nav-link">
-                            <a className="btn btn-outline-info waves-effect waves-light mr-2" href="#" role="button"><i className="mdi mdi-tag-multiple align-self-center mr-2" />Tambah Penjualan</a>
-                            <a className="btn btn-outline-info waves-effect waves-light mr-2" href="#" role="button"><i className="mdi mdi-cart align-self-center mr-2" />Tambah Pembelian</a>
-                            <a className="btn btn-outline-info waves-effect waves-light mr-2" href="#" role="button"><i className="mdi mdi-card-plus align-self-center mr-2" />Tambah Biaya</a>
+                            <Link to="/dashboard" className="btn btn-outline-info waves-effect waves-light mr-2" role="button"><i className="mdi mdi-tag-multiple align-self-center mr-2" />Tambah Penjualan</Link>
+                            <Link to="/dashboard" className="btn btn-outline-info waves-effect waves-light mr-2" role="button"><i className="mdi mdi-cart align-self-center mr-2" />Tambah Pembelian</Link>
+                            <Link to="/dashboard" className="btn btn-outline-info waves-effect waves-light mr-2" role="button"><i className="mdi mdi-card-plus align-self-center mr-2" />Tambah Biaya</Link>
                         </div>
                     </li>
                 </ul>
