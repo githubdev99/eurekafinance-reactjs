@@ -1,4 +1,12 @@
 $(document).ready(function () {
+	let splitFullUrl = window.location.pathname.split('/')
+
+	if (splitFullUrl[1] != 'auth' && splitFullUrl[1] != '') {
+		$('body').addClass('account-body accountbg');
+	} else {
+		$('body').addClass('dark-sidenav');
+	}
+
 	$(".select2").each(function () {
 		$(this).select2();
 	});

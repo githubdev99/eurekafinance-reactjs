@@ -3,12 +3,14 @@ import { Provider } from "react-redux";
 import { combineReducers, createStore } from "redux";
 
 import {
+    baseUrl,
     changeTitlePageReducer,
 } from "./reducers";
 
 class Root extends Component {
     render() {
         const appReducer = combineReducers({
+            baseUrl: baseUrl,
             titlePage: changeTitlePageReducer,
         });
 
