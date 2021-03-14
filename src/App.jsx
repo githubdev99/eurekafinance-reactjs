@@ -13,6 +13,10 @@ function App(props) {
 	useEffect(() => {
 		if (splitFullUrl[1] === 'dashboard') {
 			props.changeTitlePage('Dashboard')
+		} else if (splitFullUrl[1] === 'report') {
+			props.changeTitlePage('Laporan')
+		} else if (splitFullUrl[1] === 'account') {
+			props.changeTitlePage('Kas & Bank')
 		} else {
 			props.changeTitlePage('Login')
 		}

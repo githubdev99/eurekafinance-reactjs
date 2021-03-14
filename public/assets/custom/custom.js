@@ -1,7 +1,8 @@
 $(document).ready(function () {
 	let splitFullUrl = window.location.pathname.split('/')
 
-	if (splitFullUrl[1] != 'auth' && splitFullUrl[1] != '') {
+	// if (splitFullUrl[1] != 'auth' && splitFullUrl[1] != '') {
+	if (splitFullUrl[1] != 'auth') {
 		$('body').addClass('dark-sidenav');
 	} else {
 		$('body').addClass('account-body accountbg');
@@ -42,8 +43,6 @@ $(document).ready(function () {
 	$(".hide-element").each(function () {
 		$(this).hide();
 	});
-
-	tippy('.tippy-tooltip');
 
 	$(".limit-text").each(function () {
 		let text = $(this).text();
