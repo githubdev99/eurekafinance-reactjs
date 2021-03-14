@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import useWindowDimensions from '../../helper';
 
 function CardCurrency(props) {
     const [title, set_title] = useState('')
+    const { windowHeight, windowWidth } = useWindowDimensions()
 
     const handleTitle = () => {
-        // let text = props.setting.title;
-        // let limitLength = 0;
-        // let limitText = '';
+        let text = props.setting.title;
+        let limitLength = 0;
+        let limitText = '';
 
-        // if (props.setting.limit == 'col-lg-3') {
-        //     limitLength = (window.width() < 1400) ? 20 : 35;
-        // } else {
-        //     limitLength = 35;
-        // }
+        if (props.setting.limit == 'col-lg-3') {
+            limitLength = (windowWidth < 1400) ? 20 : 35;
+        } else {
+            limitLength = 35;
+        }
 
-        // if (text.length > limitLength) {
-        //     limitText = props.setting.title.substr(0, limitLength) + "...";
-        // } else {
-        //     limitText = text;
-        // }
+        if (text.length > limitLength) {
+            limitText = props.setting.title.substr(0, limitLength) + "...";
+        } else {
+            limitText = text;
+        }
 
-        // return limitText
-        return 'pemasukan'
+        return limitText
     }
 
     useEffect(() => {

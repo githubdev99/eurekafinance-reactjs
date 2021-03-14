@@ -39,6 +39,33 @@ function Account() {
                         currency: 10000
                     }} />
                 </div>
+                <div className="col-lg-3 col-md-6">
+                    <CardCurrency setting={{
+                        title: 'Pengeluaran 30-Hari Mendatang (dalam IDR)',
+                        type: 'danger',
+                        limit: 'col-lg-3',
+                        total: 2005,
+                        currency: 10000
+                    }} />
+                </div>
+                <div className="col-lg-3 col-md-6">
+                    <CardCurrency setting={{
+                        title: 'Saldo Kas (dalam IDR)',
+                        type: 'info',
+                        limit: 'col-lg-3',
+                        total: 2005,
+                        currency: 10000
+                    }} />
+                </div>
+                <div className="col-lg-3 col-md-6">
+                    <CardCurrency setting={{
+                        title: 'Saldo Kartu Kredit (dalam IDR)',
+                        type: 'info',
+                        limit: 'col-lg-3',
+                        total: 2005,
+                        currency: 10000
+                    }} />
+                </div>
             </div>
         </Fragment>
     )
