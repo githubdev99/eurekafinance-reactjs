@@ -16,7 +16,21 @@ function App(props) {
 		} else if (splitFullUrl[1] === 'report') {
 			props.changeTitlePage('Laporan')
 		} else if (splitFullUrl[1] === 'account') {
-			props.changeTitlePage('Kas & Bank')
+			if (splitFullUrl[2] === 'chart') {
+				props.changeTitlePage('Daftar Akun')
+			} else {
+				props.changeTitlePage('Kas & Bank')
+			}
+		} else if (splitFullUrl[1] === 'expense') {
+			props.changeTitlePage('Biaya')
+		} else if (splitFullUrl[1] === 'contact') {
+			props.changeTitlePage('Kontak')
+		} else if (splitFullUrl[1] === 'product') {
+			props.changeTitlePage('Produk')
+		} else if (splitFullUrl[1] === 'asset') {
+			props.changeTitlePage('Pengaturan Aset')
+		} else if (splitFullUrl[1] === 'setting') {
+			props.changeTitlePage('Pengaturan')
 		} else {
 			props.changeTitlePage('Login')
 		}

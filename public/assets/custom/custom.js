@@ -1,3 +1,5 @@
+const $ = window.$
+
 $(document).ready(function () {
 	let splitFullUrl = window.location.pathname.split('/')
 
@@ -42,39 +44,6 @@ $(document).ready(function () {
 
 	$(".hide-element").each(function () {
 		$(this).hide();
-	});
-
-	$(".limit-text").each(function () {
-		let text = $(this).text();
-
-		let limitLength = 0;
-		if ($(this).data('limit') == 'col-lg-3') {
-			limitLength = ($(window).width() < 1400) ? 20 : 35;
-		} else {
-			limitLength = 35;
-		}
-
-		if (text.length > limitLength) {
-			limitText = $(this).html().substr(0, limitLength) + "...";
-		} else {
-			limitText = text;
-		}
-
-		$(this).html(limitText);
-
-		$(this).mouseenter(function () {
-			$(this).html(text);
-		});
-
-		$(this).mouseleave(function () {
-			if (text.length > limitLength) {
-				limitText = $(this).html().substr(0, limitLength) + "...";
-			} else {
-				limitText = text;
-			}
-
-			$(this).html(limitText);
-		});
 	});
 
 	$(".button-menu-mobile").on("click", function (e) {

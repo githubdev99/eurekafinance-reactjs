@@ -9,9 +9,8 @@ import {
 } from "react-router-dom";
 import { getCurrentDate } from '../../../helper/custom'
 import CardCurrency from '../../global/CardCurrency'
-import AccountChart from './chart/index'
 
-function Account() {
+function Expense() {
     let { path, url } = useRouteMatch();
     const $ = window.$
 
@@ -19,7 +18,6 @@ function Account() {
         $('[data-toggle="tooltip"]').tooltip()
 
         $("#tableDefault").DataTable()
-        console.log('account')
     }, [])
 
     return (
@@ -31,15 +29,15 @@ function Account() {
                             <div className="row">
                                 <div className="col">
                                     <small className="text-muted font-14">
-                                        <b>Kas &amp; Bank</b>
+                                        <b>Biaya</b>
                                     </small>
                                     <h3 style={{ marginTop: 0 }}>
-                                        Akun Kas
-                                        </h3>
+                                        Pengeluaran
+                                </h3>
                                 </div>
                                 {/*end col*/}
                                 <div className="col-auto align-self-top">
-                                    <a href="#" className="btn btn-info waves-effect waves-light"><i className="fas fa-plus mr-2" />Buat Akun Baru</a>
+                                    <a href="#" className="btn btn-info waves-effect waves-light"><i className="fas fa-plus mr-2" />Buat Biaya Baru</a>
                                 </div>
                                 {/*end col*/}
                             </div>
@@ -51,38 +49,29 @@ function Account() {
                 </div>
 
                 <div className="row">
-                    <div className="col-lg-3 col-md-6">
+                    <div className="col-lg-4">
                         <CardCurrency setting={{
-                            title: 'Pemasukan 30-Hari Mendatang (dalam IDR)',
-                            type: 'success',
-                            limit: 'col-lg-3',
-                            total: 2005,
-                            currency: 10000
-                        }} />
-                    </div>
-                    <div className="col-lg-3 col-md-6">
-                        <CardCurrency setting={{
-                            title: 'Pengeluaran 30-Hari Mendatang (dalam IDR)',
-                            type: 'danger',
-                            limit: 'col-lg-3',
-                            total: 2005,
-                            currency: 10000
-                        }} />
-                    </div>
-                    <div className="col-lg-3 col-md-6">
-                        <CardCurrency setting={{
-                            title: 'Saldo Kas (dalam IDR)',
+                            title: 'Total Biaya Bulan Ini (dalam IDR)',
                             type: 'info',
-                            limit: 'col-lg-3',
+                            limit: 'col-lg-4',
                             total: 2005,
                             currency: 10000
                         }} />
                     </div>
-                    <div className="col-lg-3 col-md-6">
+                    <div className="col-lg-4">
                         <CardCurrency setting={{
-                            title: 'Saldo Kartu Kredit (dalam IDR)',
+                            title: 'Biaya 30 Hari Terakhir (dalam IDR)',
                             type: 'info',
-                            limit: 'col-lg-3',
+                            limit: 'col-lg-4',
+                            total: 2005,
+                            currency: 10000
+                        }} />
+                    </div>
+                    <div className="col-lg-4">
+                        <CardCurrency setting={{
+                            title: 'Biaya Belum Dibayar (dalam IDR)',
+                            type: 'info',
+                            limit: 'col-lg-4',
                             total: 2005,
                             currency: 10000
                         }} />
@@ -91,33 +80,30 @@ function Account() {
 
                 <div className="row">
                     <div className="col-lg-12">
-                        <span className="float-right font-12 font-weight-bold">Saldo berdasarkan tanggal {getCurrentDate('/')}, kecuali ada pernyataan lain</span>
+                        <span className="float-right font-12 font-weight-bold">Saldo adalah untuk semua jangka waktu, kecuali ada pernyataan lain</span>
                         <div className="clearfix" />
                         <div className="card card-default">
                             <div className="card-body">
                                 <div className="row mb-3">
                                     <div className="col">
-                                        <h3>Daftar Akun Kas</h3>
+                                        <h3>Daftar Biaya</h3>
                                     </div>
                                     <div className="col text-right">
-                                        <div className="btn-group dropleft mb-2 mb-md-0">
-                                            <button type="button" className="btn btn-info waves-effect waves-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fas fa-plus mr-2" />Buat Transaksi</button>
-                                            <div className="dropdown-menu">
-                                                <a className="dropdown-item" href="#">Transfer Uang</a>
-                                                <a className="dropdown-item" href="#">Terima Uang</a>
-                                                <a className="dropdown-item" href="#">Kirim Uang</a>
-                                            </div>
-                                        </div>{/* /btn-group */}
+                                        <button type="button" className="btn btn-success waves-effect waves-light"><i className="fas fa-file-excel mr-2" />Ekspor ke excel</button>
                                     </div>
                                 </div>
                                 <div className="table-responsive">
                                     <table id="tableDefault" className="table table-bordered table-hover dt-responsive nowrap" style={{ borderCollapse: 'collapse', borderSpacing: 0, width: '100%' }}>
                                         <thead>
                                             <tr className="table-info">
-                                                <th>Kode Akun</th>
-                                                <th>Nama Akun</th>
-                                                <th>Saldo Bank</th>
-                                                <th>Saldo Di Eureka Finance</th>
+                                                <th>Tanggal</th>
+                                                <th>Nomor</th>
+                                                <th>Kategori</th>
+                                                <th>Penerima</th>
+                                                <th>Status</th>
+                                                <th>Sisa Tagihan (dalam IDR)</th>
+                                                <th>Total (dalam IDR)</th>
+                                                <th>Tags</th>
                                                 <th>Opsi</th>
                                             </tr>
                                         </thead>
@@ -130,11 +116,8 @@ function Account() {
                     </div>
                 </div>
             </Route>
-            <Route path={`${path}/chart`}>
-                <AccountChart />
-            </Route>
         </Switch>
     )
 }
 
-export default Account
+export default Expense

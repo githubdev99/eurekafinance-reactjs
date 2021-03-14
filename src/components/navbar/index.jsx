@@ -349,7 +349,7 @@ function Navbar(props) {
                     </li>
                     <li className="dropdown">
                         <a className="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <span className="ml-1 nav-user-name hidden-sm">PT. Raja Cepat Nusantara</span>
+                            <span className="ml-1 mr-2 nav-user-name hidden-sm">PT. Raja Cepat Nusantara</span>
                             <img src={`${props.baseUrl}assets/images/users/user-5.jpg`} alt="profile-user" className="rounded-circle thumb-xs" />
                         </a>
                         <div className="dropdown-menu dropdown-menu-right">
