@@ -76,6 +76,10 @@ $(document).ready(function () {
 			$(this).html(limitText);
 		});
 	});
+
+	$(".button-menu-mobile").on("click", function (e) {
+		e.preventDefault(), $("body").toggleClass("enlarge-menu")
+	});
 });
 
 function convert_date(date) {

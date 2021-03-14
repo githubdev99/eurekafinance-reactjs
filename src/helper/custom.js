@@ -8,7 +8,7 @@ function getWindowDimensions() {
     };
 }
 
-export default function useWindowDimensions() {
+export const useWindowDimensions = () => {
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
     useEffect(() => {
@@ -21,4 +21,11 @@ export default function useWindowDimensions() {
     }, []);
 
     return windowDimensions;
+}
+
+export const rupiah = (number) => {
+    var reverse = number.toString().split("").reverse().join(""),
+        ribuan = reverse.match(/\d{1,3}/g);
+    ribuan = ribuan.join(".").split("").reverse().join("");
+    return "Rp" + ribuan;
 }
