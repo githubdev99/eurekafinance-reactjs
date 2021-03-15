@@ -329,10 +329,3 @@ function format_rupiah(angka) {
 	rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
 	return rupiah;
 }
-
-function rupiah(number) {
-	var reverse = number.toString().split("").reverse().join(""),
-		ribuan = reverse.match(/\d{1,3}/g);
-	ribuan = ribuan.join(".").split("").reverse().join("");
-	return "Rp" + ribuan;
-}

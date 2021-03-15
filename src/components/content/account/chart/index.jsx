@@ -1,14 +1,30 @@
-import React, { useState, useEffect, Fragment } from 'react'
-import { getCurrentDate } from '../../../../helper/custom'
+import React, { useState, useEffect, Fragment } from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams,
+    useRouteMatch
+} from "react-router-dom";
+import { getCurrentDate } from './../../../../helper/custom'
 
 function AccountChart() {
+    let { path, url } = useRouteMatch();
+
+    return (
+        <Switch>
+            <Route exact path={path} render={() => <AccountChartList />} />
+        </Switch>
+    )
+}
+
+function AccountChartList() {
     const $ = window.$
 
     useEffect(() => {
         $('[data-toggle="tooltip"]').tooltip()
-
         $("#tableDefault").DataTable()
-        console.log('account/chart')
     }, [])
 
     return (
