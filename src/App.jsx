@@ -1,12 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
-import { changeTitlePage } from './actions/config';
+import { changeTitlePage } from './redux/actions/config';
 import Sidebar from './components/sidebar/index';
 import Navbar from './components/navbar/index';
 import Footer from './components/footer/index';
 import { BrowserRouter as Router } from "react-router-dom";
 import Routes from './routes';
+import PrivateRoute from './routes/private/PrivateRoute';
+
+function testingRoute(props) {
+	const splitFullUrl = window.location.pathname.split('/')
+
+	return (
+		<Fragment>
+			<Sidebar splitFullUrl={splitFullUrl} />
+			<div className="page-wrapper">
+				<Navbar />
+				<div className="page-content" style={{ backgroundColor: '#f5f5f5' }}>
+					<div className="container-fluid">
+						<Routes />
+					</div>
+					<Footer />
+				</div>
+			</div>
+		</Fragment>
+	)
+}
+
 function App(props) {
 	const splitFullUrl = window.location.pathname.split('/')
 
@@ -43,16 +64,8 @@ function App(props) {
 				<link rel="apple-touch-icon" href={`${props.baseUrl}${process.env.REACT_APP_LOGO_MINI}`} />
 				<title>{props.titlePage}</title>
 			</Helmet>
-			<Sidebar splitFullUrl={splitFullUrl} />
-			<div className="page-wrapper">
-				<Navbar />
-				<div className="page-content" style={{ backgroundColor: '#f5f5f5' }}>
-					<div className="container-fluid">
-						<Routes />
-					</div>
-					<Footer />
-				</div>
-			</div>
+
+			<PrivateRoute auth={false} component={testingRoute} />
 		</Router>
 	);
 }

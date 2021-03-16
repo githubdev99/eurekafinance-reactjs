@@ -5,7 +5,7 @@ import { combineReducers, createStore } from "redux";
 import {
     baseUrl,
     changeTitlePageReducer,
-} from "./reducers";
+} from "./redux/reducers";
 
 class Root extends Component {
     render() {

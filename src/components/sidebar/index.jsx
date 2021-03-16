@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
-import { changeTitlePage } from './../../actions/config';
+import { changeTitlePage } from './../../redux/actions/config';
 import { Link } from 'react-router-dom';
 
 function Sidebar(props) {
