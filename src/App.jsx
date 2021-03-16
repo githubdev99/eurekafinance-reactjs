@@ -12,7 +12,7 @@ import PublicRoute from './routes/public/PublicRoute';
 import ListPublicRoute from './routes/public';
 
 function App(props) {
-	const [auth, set_auth] = useState(false)
+	const [auth, set_auth] = useState(true)
 	const splitFullUrl = window.location.pathname.split('/')
 
 	useEffect(() => {

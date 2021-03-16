@@ -4,10 +4,3 @@ export const changeTitlePage = (payload) => {
         payload: payload,
     }
 }
-
-// export const baseUrl = (payload) => {
-//     return {
-//         type: "CONFIG_BASE_URL",
-//         payload: payload,
-//     }
-// }

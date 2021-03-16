@@ -8,7 +8,7 @@ import {
     useRouteMatch,
     Redirect
 } from "react-router-dom";
-import { getCurrentDate } from '../../../../helper/custom'
+import { getCurrentDate, numberOnly } from '../../../../helper/custom'
 import { connect } from "react-redux";
 import { changeTitlePage } from '../../../../redux/actions/config';
 
@@ -21,6 +21,34 @@ function Register(props) {
         $(".select2").each(function () {
             $(this).select2();
         });
+
+        $(() => {
+            var w = window,
+                C = '___grecaptcha_cfg',
+                cfg = w[C] = w[C] || {},
+                N = 'grecaptcha';
+            var gr = w[N] = w[N] || {};
+            gr.ready = gr.ready || function (f) {
+                (cfg['fns'] = cfg['fns'] || []).push(f);
+            };
+            w['__recaptcha_api'] = 'https://www.google.com/recaptcha/api2/';
+            (cfg['render'] = cfg['render'] || []).push('onload');
+            w['__google_recaptcha_client'] = true;
+            var d = document,
+                po = d.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            po.src = 'https://www.gstatic.com/recaptcha/releases/a7xT2d71Jli62wQMfeUUrLcO/recaptcha__id.js';
+            po.crossOrigin = 'anonymous';
+            po.integrity = 'sha384-uy1Gb7HTz7168uOKy5gBTFWBDVeUmUGusRDObDxN+gwqyN4lzdwBlpNNyno3+XLW';
+            var e = d.querySelector('script[nonce]'),
+                n = e && (e['nonce'] || e.getAttribute('nonce'));
+            if (n) {
+                po.setAttribute('nonce', n);
+            }
+            var s = d.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })
     }, [])
 
     return (
@@ -42,7 +70,7 @@ function Register(props) {
                                         </div>
                                     </div>
                                     <div className="card-body p-3">
-                                        <form method="post" encType="multipart/form-data" name="register">
+                                        <form action="true" method="post" encType="multipart/form-data" name="register">
                                             <div className="form-group mb-2">
                                                 <label htmlFor="company_name">Pilih Perusahaan</label>
                                                 <select className="select2 form-control mb-3 custom-select" style={{ width: '100%' }} data-placeholder="Pilih salah satu" name="company_name" id="company_name" required>
@@ -78,7 +106,7 @@ function Register(props) {
                                             {/*end form-group*/}
                                             <div className="form-group mb-2">
                                                 <label htmlFor="phone_number">Nomor Telepon</label>
-                                                <input type="text" className="form-control" name="phone_number" id="phone_number" onkeypress="number_only(event)" required />
+                                                <input type="text" className="form-control" name="phone_number" id="phone_number" onKeyPress="" required />
                                                 <small className="form-text text-muted">Hanya berisi angka (0-9)</small>
                                             </div>
                                             {/*end form-group*/}

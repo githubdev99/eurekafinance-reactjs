@@ -38,7 +38,7 @@ function ForgotPassword(props) {
                                         </div>
                                     </div>
                                     <div className="card-body p-3">
-                                        <form action method="post" encType="multipart/form-data">
+                                        <form action="true" method="post" encType="multipart/form-data">
                                             <div className="form-group mb-2">
                                                 <label htmlFor="email">Email</label>
                                                 <div className="input-group">
