@@ -3,11 +3,10 @@ const $ = window.$
 $(document).ready(function () {
 	let splitFullUrl = window.location.pathname.split('/')
 
-	// if (splitFullUrl[1] != 'auth' && splitFullUrl[1] != '') {
-	if (splitFullUrl[1] != 'auth') {
-		$('body').addClass('dark-sidenav');
-	} else {
+	if (splitFullUrl[1] != 'dashboard') {
 		$('body').addClass('account-body accountbg');
+	} else {
+		$('body').addClass('dark-sidenav');
 	}
 
 	$(".select2").each(function () {

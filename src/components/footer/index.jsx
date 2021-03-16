@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 function Footer(props) {
     return (
         <footer className="footer text-center text-sm-left" style={{ backgroundColor: 'white' }}>
-            &copy; 2021 Eureka Developer All Rights Reserved.
+            &copy; {new Date().getFullYear()} Eureka Developer All Rights Reserved.
         </footer>
     )
 }

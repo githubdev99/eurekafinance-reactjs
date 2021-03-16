@@ -6,29 +6,13 @@ import Sidebar from './components/sidebar/index';
 import Navbar from './components/navbar/index';
 import Footer from './components/footer/index';
 import { BrowserRouter as Router } from "react-router-dom";
-import Routes from './routes';
 import PrivateRoute from './routes/private/PrivateRoute';
-
-function testingRoute(props) {
-	const splitFullUrl = window.location.pathname.split('/')
-
-	return (
-		<Fragment>
-			<Sidebar splitFullUrl={splitFullUrl} />
-			<div className="page-wrapper">
-				<Navbar />
-				<div className="page-content" style={{ backgroundColor: '#f5f5f5' }}>
-					<div className="container-fluid">
-						<Routes />
-					</div>
-					<Footer />
-				</div>
-			</div>
-		</Fragment>
-	)
-}
+import ListPrivateRoute from './routes/private';
+import PublicRoute from './routes/public/PublicRoute';
+import ListPublicRoute from './routes/public';
 
 function App(props) {
+	const [auth, set_auth] = useState(false)
 	const splitFullUrl = window.location.pathname.split('/')
 
 	useEffect(() => {
@@ -64,8 +48,21 @@ function App(props) {
 				<link rel="apple-touch-icon" href={`${props.baseUrl}${process.env.REACT_APP_LOGO_MINI}`} />
 				<title>{props.titlePage}</title>
 			</Helmet>
-
-			<PrivateRoute auth={false} component={testingRoute} />
+			<PublicRoute auth={auth} component={<ListPublicRoute />} />
+			<PrivateRoute auth={auth} component={(
+				<Fragment>
+					<Sidebar splitFullUrl={splitFullUrl} />
+					<div className="page-wrapper">
+						<Navbar />
+						<div className="page-content" style={{ backgroundColor: '#f5f5f5' }}>
+							<div className="container-fluid">
+								<ListPrivateRoute />
+							</div>
+							<Footer />
+						</div>
+					</div>
+				</Fragment>
+			)} />
 		</Router>
 	);
 }
