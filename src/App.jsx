@@ -1,79 +1,104 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, memo } from 'react';
 import { Helmet } from "react-helmet";
-import { connect } from "react-redux";
-import { changeTitlePage } from './redux/actions/config';
+import { connect, useDispatch, useSelector } from "react-redux";
+import { changeTitlePage, setInitUrl } from './redux/actions/Auth';
 import Sidebar from './components/sidebar/index';
 import Navbar from './components/navbar/index';
 import Footer from './components/footer/index';
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 import PrivateRoute from './routes/private/PrivateRoute';
 import ListPrivateRoute from './routes/private';
 import PublicRoute from './routes/public/PublicRoute';
 import ListPublicRoute from './routes/public';
 
-function App(props) {
-	const [auth, set_auth] = useState(true)
-	const splitFullUrl = window.location.pathname.split('/')
+function MainApp() {
+	return (
+		<Fragment>
+			<Sidebar splitFullUrl={window.location.pathname.split('/')} />
+			<div className="page-wrapper">
+				<Navbar />
+				<div className="page-content" style={{ backgroundColor: '#f5f5f5' }}>
+					<div className="container-fluid">
+						<ListPrivateRoute />
+					</div>
+					<Footer />
+				</div>
+			</div>
+		</Fragment>
+	);
+}
+
+function App() {
+	const dispatch = useDispatch()
+	const { titlePage, initURL, authUser, baseURL } = useSelector(({ auth }) => auth)
+
+	const location = useLocation();
+	const history = useHistory();
+	const match = useRouteMatch()
+
+	const $ = window.$
 
 	useEffect(() => {
+		if (initURL === '') {
+			dispatch(setInitUrl(location.pathname));
+		}
+
+		const splitFullUrl = window.location.pathname.split('/')
+
+		if (splitFullUrl[1] !== 'dashboard') {
+			$('body').addClass('account-body accountbg');
+		} else {
+			$('body').addClass('dark-sidenav');
+		}
+
 		if (splitFullUrl[1] === 'dashboard') {
-			props.changeTitlePage('Dashboard')
+			dispatch(changeTitlePage('Dashboard'));
 		} else if (splitFullUrl[1] === 'report') {
-			props.changeTitlePage('Laporan')
+			dispatch(changeTitlePage('Laporan'));
 		} else if (splitFullUrl[1] === 'account') {
 			if (splitFullUrl[2] === 'chart') {
-				props.changeTitlePage('Daftar Akun')
+				dispatch(changeTitlePage('Daftar Akun'));
 			} else {
-				props.changeTitlePage('Kas & Bank')
+				dispatch(changeTitlePage('Kas & Bank'));
 			}
 		} else if (splitFullUrl[1] === 'expense') {
-			props.changeTitlePage('Biaya')
+			dispatch(changeTitlePage('Biaya'));
 		} else if (splitFullUrl[1] === 'contact') {
-			props.changeTitlePage('Kontak')
+			dispatch(changeTitlePage('Kontak'));
 		} else if (splitFullUrl[1] === 'product') {
-			props.changeTitlePage('Produk')
+			dispatch(changeTitlePage('Produk'));
 		} else if (splitFullUrl[1] === 'asset') {
-			props.changeTitlePage('Pengaturan Aset')
+			dispatch(changeTitlePage('Pengaturan Aset'));
 		} else if (splitFullUrl[1] === 'setting') {
-			props.changeTitlePage('Pengaturan')
+			dispatch(changeTitlePage('Pengaturan'));
 		} else {
-			props.changeTitlePage('Login')
+			dispatch(changeTitlePage('Login'));
 		}
 	}, [])
+
+	useEffect(() => {
+		if (location.pathname === '/') {
+			if (authUser) {
+				history.push('/dashboard');
+			} else if (initURL === '' || initURL === '/' || initURL === '/login') {
+				history.push('/login');
+			} else {
+				history.push(initURL);
+			}
+		}
+	}, [authUser, initURL, location, history]);
 
 	return (
 		<Router>
 			<Helmet>
-				<link rel="icon" href={`${props.baseUrl}${process.env.REACT_APP_LOGO_MINI}`} />
-				<link rel="apple-touch-icon" href={`${props.baseUrl}${process.env.REACT_APP_LOGO_MINI}`} />
-				<title>{props.titlePage}</title>
+				<link rel="icon" href={`${baseURL}${process.env.REACT_APP_LOGO_MINI}`} />
+				<link rel="apple-touch-icon" href={`${baseURL}${process.env.REACT_APP_LOGO_MINI}`} />
+				<title>{titlePage}</title>
 			</Helmet>
-			<PublicRoute auth={auth} component={<ListPublicRoute />} />
-			<PrivateRoute auth={auth} component={(
-				<Fragment>
-					<Sidebar splitFullUrl={splitFullUrl} />
-					<div className="page-wrapper">
-						<Navbar />
-						<div className="page-content" style={{ backgroundColor: '#f5f5f5' }}>
-							<div className="container-fluid">
-								<ListPrivateRoute />
-							</div>
-							<Footer />
-						</div>
-					</div>
-				</Fragment>
-			)} />
+			<PublicRoute path={`${match.url}`} authUser={authUser} location={location} component={ListPublicRoute} />
+			<PrivateRoute path={`${match.url}`} authUser={authUser} location={location} component={MainApp} />
 		</Router>
 	);
 }
 
-const mapStateToProps = state => ({
-	titlePage: state.titlePage,
-	baseUrl: state.baseUrl
-})
-
-const mapDispatchToProps = {
-	changeTitlePage: changeTitlePage
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default memo(App);

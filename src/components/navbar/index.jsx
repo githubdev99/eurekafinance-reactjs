@@ -1,8 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from "react-redux";
+/* eslint-disable no-script-url */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState, useEffect, memo } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
+import { setLoginUser } from './../../redux/actions/Auth';
+import { Redirect } from 'react-router-dom';
 
-function Navbar(props) {
+function Navbar() {
+    const dispatch = useDispatch()
+    const { titlePage, initURL, authUser, baseURL } = useSelector(({ auth }) => auth)
+
     return (
         <div className="topbar">
             {/* Navbar */}
@@ -10,7 +17,7 @@ function Navbar(props) {
                 <ul className="list-unstyled topbar-nav float-right mb-0">
                     <li className="dropdown notification-list">
                         <a className="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src={`${props.baseUrl}assets/images/icons/clock.svg`} alt="icon-feather" className="align-self-center topbar-icon" />
+                            <img src={`${baseURL}assets/images/icons/clock.svg`} alt="icon-feather" className="align-self-center topbar-icon" />
                         </a>
                         <div className="dropdown-menu dropdown-menu-right dropdown-lg pt-0">
                             <h6 className="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
@@ -22,7 +29,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 min ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/shopping-cart.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/shopping-cart.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Your order is placed</h6>
@@ -38,7 +45,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">10 min ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/users/user-4.jpg`} alt className="thumb-sm rounded-circle" />
+                                            <img src={`${baseURL}assets/images/users/user-4.jpg`} alt="icon" className="thumb-sm rounded-circle" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Meeting with designers</h6>
@@ -54,7 +61,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">40 min ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/users.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/users.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">UX 3 Task complete.</h6>
@@ -70,7 +77,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">1 hr ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/users/user-5.jpg`} alt className="thumb-sm rounded-circle" />
+                                            <img src={`${baseURL}assets/images/users/user-5.jpg`} alt="icon" className="thumb-sm rounded-circle" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Your order is placed</h6>
@@ -86,7 +93,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -101,7 +108,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -116,7 +123,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -131,7 +138,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -146,7 +153,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -161,7 +168,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -177,7 +184,7 @@ function Navbar(props) {
                     </li>
                     <li className="dropdown notification-list">
                         <a className="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                            <img src={`${props.baseUrl}assets/images/icons/bell.svg`} alt="icon-feather" className="align-self-center topbar-icon" />
+                            <img src={`${baseURL}assets/images/icons/bell.svg`} alt="icon-feather" className="align-self-center topbar-icon" />
                             <span className="badge badge-danger badge-pill noti-icon-badge">2</span>
                         </a>
                         <div className="dropdown-menu dropdown-menu-right dropdown-lg pt-0">
@@ -190,7 +197,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 min ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/shopping-cart.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/shopping-cart.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Your order is placed</h6>
@@ -206,7 +213,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">10 min ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/users/user-4.jpg`} alt className="thumb-sm rounded-circle" />
+                                            <img src={`${baseURL}assets/images/users/user-4.jpg`} alt="icon" className="thumb-sm rounded-circle" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Meeting with designers</h6>
@@ -222,7 +229,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">40 min ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/users.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/users.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">UX 3 Task complete.</h6>
@@ -238,7 +245,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">1 hr ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/users/user-5.jpg`} alt className="thumb-sm rounded-circle" />
+                                            <img src={`${baseURL}assets/images/users/user-5.jpg`} alt="icon" className="thumb-sm rounded-circle" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Your order is placed</h6>
@@ -254,7 +261,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -269,7 +276,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -284,7 +291,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -299,7 +306,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -314,7 +321,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -329,7 +336,7 @@ function Navbar(props) {
                                     <small className="float-right text-muted pl-2">2 hrs ago</small>
                                     <div className="media">
                                         <div className="avatar-md bg-soft-primary">
-                                            <img src={`${props.baseUrl}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
+                                            <img src={`${baseURL}assets/images/icons/check-circle.svg`} alt="icon-feather" className="align-self-center icon-xs" />
                                         </div>
                                         <div className="media-body align-self-center ml-2 text-truncate">
                                             <h6 className="my-0 font-weight-normal text-dark">Payment Successfull</h6>
@@ -350,18 +357,22 @@ function Navbar(props) {
                     <li className="dropdown">
                         <a className="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <span className="ml-1 mr-2 nav-user-name hidden-sm">PT. Raja Cepat Nusantara</span>
-                            <img src={`${props.baseUrl}assets/images/users/user-5.jpg`} alt="profile-user" className="rounded-circle thumb-xs" />
+                            <img src={`${baseURL}assets/images/users/user-5.jpg`} alt="profile-user" className="rounded-circle thumb-xs" />
                         </a>
                         <div className="dropdown-menu dropdown-menu-right">
                             <a className="dropdown-item" href="javascript:;">
-                                <img src={`${props.baseUrl}assets/images/icons/user.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Profil Akun
+                                <img src={`${baseURL}assets/images/icons/user.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Profil Akun
                             </a>
                             <a className="dropdown-item" href="javascript:;">
-                                <img src={`${props.baseUrl}assets/images/icons/settings.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Settings
+                                <img src={`${baseURL}assets/images/icons/settings.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Settings
                             </a>
                             <div className="dropdown-divider mb-0" />
-                            <a className="dropdown-item" href="javascript:;">
-                                <img src={`${props.baseUrl}assets/images/icons/power.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Logout</a>
+                            <a className="dropdown-item" href="javascript:;" onClick={() => {
+                                <Redirect to="/login" />
+                                dispatch(setLoginUser(false))
+                            }}>
+                                <img src={`${baseURL}assets/images/icons/power.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Logout
+                            </a>
                         </div>
                     </li>
                 </ul>
@@ -369,7 +380,7 @@ function Navbar(props) {
                 <ul className="list-unstyled topbar-nav mb-0">
                     <li>
                         <button className="nav-link button-menu-mobile">
-                            <img src={`${props.baseUrl}assets/images/icons/menu.svg`} alt="icon-feather" className="align-self-center topbar-icon" />
+                            <img src={`${baseURL}assets/images/icons/menu.svg`} alt="icon-feather" className="align-self-center topbar-icon" />
                         </button>
                     </li>
                     <li className="creat-btn">
@@ -386,8 +397,4 @@ function Navbar(props) {
     )
 }
 
-const mapStateToProps = state => ({
-    baseUrl: state.baseUrl
-})
-
-export default connect(mapStateToProps, null)(Navbar);
+export default memo(Navbar);

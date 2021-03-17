@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect, Fragment } from 'react';
 import {
     BrowserRouter as Router,

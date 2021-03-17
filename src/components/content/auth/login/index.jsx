@@ -1,4 +1,5 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, memo } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import {
     BrowserRouter as Router,
     Switch,
@@ -8,16 +9,15 @@ import {
     useRouteMatch,
     Redirect
 } from "react-router-dom";
-import { getCurrentDate } from '../../../../helper/custom'
-import { connect } from "react-redux";
-import { changeTitlePage } from '../../../../redux/actions/config';
+import { changeTitlePage, setLoginUser } from './../../../../redux/actions/Auth';
 
-function Login(props) {
-    const $ = window.$
+function Login() {
+    const dispatch = useDispatch()
+    const { titlePage, initURL, baseURL, authUser } = useSelector(({ auth }) => auth)
 
     useEffect(() => {
         <Redirect from="/" to="/login" />
-        props.changeTitlePage('Login')
+        dispatch(changeTitlePage('Login'))
     }, [])
 
     return (
@@ -32,7 +32,7 @@ function Login(props) {
                                     <div className="card-body p-0 auth-header-box">
                                         <div className="text-center p-3">
                                             <a href="index-2.html" className="logo logo-admin">
-                                                <img src={`${props.baseUrl}${process.env.REACT_APP_LOGO_MINI}`} height={50} alt="logo" className="auth-logo" />
+                                                <img src={`${baseURL}${process.env.REACT_APP_LOGO_MINI}`} height={50} alt="logo" className="auth-logo" />
                                             </a>
                                             <h4 className="mt-3 mb-1 font-weight-semibold text-white font-18">{process.env.REACT_APP_NAME}</h4>
                                             <p className="text-muted  mb-0">Log in untuk melanjutkan ke {process.env.REACT_APP_NAME}.</p>
@@ -56,9 +56,10 @@ function Login(props) {
                                             {/*end form-group*/}
                                             <div className="form-group mt-4 row">
                                                 <div className="col-12">
-                                                    <Link to="/dashboard">
-                                                        <button className="btn btn-primary btn-block waves-effect waves-light" type="button" name="login">Log in</button>
-                                                    </Link>
+                                                    <button className="btn btn-primary btn-block waves-effect waves-light" type="button" name="login" onClick={() => {
+                                                        <Redirect to="/dashboard" />
+                                                        dispatch(setLoginUser(true))
+                                                    }}>Log in</button>
                                                 </div>
                                                 {/*end col*/}
                                             </div>
@@ -69,7 +70,7 @@ function Login(props) {
                                             <h6 className="mb-3">Atau</h6>
                                         </div>
                                         <div className="text-center">
-                                            <button className="btn btn-light btn-block waves-effect waves-light" type="button"><i className="mr-3"><img src={`${props.baseUrl}assets/images/logo-google.svg`} alt="logo-google" /></i>Log in dengan Google </button>
+                                            <button className="btn btn-light btn-block waves-effect waves-light" type="button"><i className="mr-3"><img src={`${baseURL}assets/images/logo-google.svg`} alt="logo-google" /></i>Log in dengan Google </button>
                                         </div>
                                         <div className="m-3 text-center text-muted">
                                             <p className="mb-0">
@@ -102,13 +103,4 @@ function Login(props) {
     )
 }
 
-const mapStateToProps = state => ({
-    titlePage: state.titlePage,
-    baseUrl: state.baseUrl
-})
-
-const mapDispatchToProps = {
-    changeTitlePage: changeTitlePage
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default memo(Login);

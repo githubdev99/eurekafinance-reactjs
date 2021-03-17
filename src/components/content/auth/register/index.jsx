@@ -1,4 +1,5 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, memo } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import {
     BrowserRouter as Router,
     Switch,
@@ -9,14 +10,15 @@ import {
     Redirect
 } from "react-router-dom";
 import { getCurrentDate, numberOnly } from '../../../../helper/custom'
-import { connect } from "react-redux";
-import { changeTitlePage } from '../../../../redux/actions/config';
+import { changeTitlePage } from './../../../../redux/actions/Auth';
 
-function Register(props) {
+function Register() {
+    const dispatch = useDispatch()
+    const { titlePage, initURL, baseURL, authUser } = useSelector(({ auth }) => auth)
     const $ = window.$
 
     useEffect(() => {
-        props.changeTitlePage('Buat Akun')
+        dispatch(changeTitlePage('Buat Akun'))
 
         $(".select2").each(function () {
             $(this).select2();
@@ -63,7 +65,7 @@ function Register(props) {
                                     <div className="card-body p-0 auth-header-box">
                                         <div className="text-center p-3">
                                             <a href="index-2.html" className="logo logo-admin">
-                                                <img src={`${props.baseUrl}${process.env.REACT_APP_LOGO_MINI}`} height={50} alt="logo" className="auth-logo" />
+                                                <img src={`${baseURL}${process.env.REACT_APP_LOGO_MINI}`} height={50} alt="logo" className="auth-logo" />
                                             </a>
                                             <h4 className="mt-3 mb-1 font-weight-semibold text-white font-18">{process.env.REACT_APP_NAME}</h4>
                                             <p className="text-muted  mb-0">Buat akun jika belum memiliki akun di {process.env.REACT_APP_NAME}.</p>
@@ -106,7 +108,7 @@ function Register(props) {
                                             {/*end form-group*/}
                                             <div className="form-group mb-2">
                                                 <label htmlFor="phone_number">Nomor Telepon</label>
-                                                <input type="text" className="form-control" name="phone_number" id="phone_number" onKeyPress="" required />
+                                                <input type="text" className="form-control" name="phone_number" id="phone_number" required />
                                                 <small className="form-text text-muted">Hanya berisi angka (0-9)</small>
                                             </div>
                                             {/*end form-group*/}
@@ -124,7 +126,7 @@ function Register(props) {
                                             <h6 className="mb-3">Atau</h6>
                                         </div>
                                         <div className="text-center">
-                                            <button className="btn btn-light btn-block waves-effect waves-light" type="button"><i className="mr-3"><img src={`${props.baseUrl}assets/images/logo-google.svg`} alt="logo-google" /></i>Register dengan Google </button>
+                                            <button className="btn btn-light btn-block waves-effect waves-light" type="button"><i className="mr-3"><img src={`${baseURL}assets/images/logo-google.svg`} alt="logo-google" /></i>Register dengan Google </button>
                                         </div>
                                         <div className="m-3 text-center text-muted">
                                             <p className="mb-0">
@@ -155,13 +157,4 @@ function Register(props) {
     )
 }
 
-const mapStateToProps = state => ({
-    titlePage: state.titlePage,
-    baseUrl: state.baseUrl
-})
-
-const mapDispatchToProps = {
-    changeTitlePage: changeTitlePage
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default memo(Register);

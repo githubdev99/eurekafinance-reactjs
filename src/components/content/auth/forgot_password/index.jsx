@@ -1,4 +1,5 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect, Fragment, memo } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import {
     BrowserRouter as Router,
     Switch,
@@ -10,13 +11,15 @@ import {
 } from "react-router-dom";
 import { getCurrentDate } from '../../../../helper/custom'
 import { connect } from "react-redux";
-import { changeTitlePage } from '../../../../redux/actions/config';
+import { changeTitlePage } from '../../../../redux/actions/Auth';
 
-function ForgotPassword(props) {
+function ForgotPassword() {
+    const dispatch = useDispatch()
+    const { titlePage, initURL, baseURL, authUser } = useSelector(({ auth }) => auth)
     const $ = window.$
 
     useEffect(() => {
-        props.changeTitlePage('Lupa Password')
+        dispatch(changeTitlePage('Lupa Password'))
     }, [])
 
     return (
@@ -31,7 +34,7 @@ function ForgotPassword(props) {
                                     <div className="card-body p-0 auth-header-box">
                                         <div className="text-center p-3">
                                             <a href="index-2.html" className="logo logo-admin">
-                                                <img src={`${props.baseUrl}${process.env.REACT_APP_LOGO_MINI}`} height={50} alt="logo" className="auth-logo" />
+                                                <img src={`${baseURL}${process.env.REACT_APP_LOGO_MINI}`} height={50} alt="logo" className="auth-logo" />
                                             </a>
                                             <h4 className="mt-3 mb-1 font-weight-semibold text-white font-18">{process.env.REACT_APP_NAME}</h4>
                                             <p className="text-muted  mb-0">Masukkan email yang Anda lupa passwordnya.</p>
@@ -87,13 +90,4 @@ function ForgotPassword(props) {
     )
 }
 
-const mapStateToProps = state => ({
-    titlePage: state.titlePage,
-    baseUrl: state.baseUrl
-})
-
-const mapDispatchToProps = {
-    changeTitlePage: changeTitlePage
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);
+export default memo(ForgotPassword);
