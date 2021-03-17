@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-script-url */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect, memo } from 'react';
@@ -9,6 +10,13 @@ import { Redirect } from 'react-router-dom';
 function Navbar() {
     const dispatch = useDispatch()
     const { titlePage, initURL, authUser, baseURL } = useSelector(({ auth }) => auth)
+    const $ = window.$
+
+    useEffect(() => {
+        $(".button-menu-mobile").on("click", function (e) {
+            e.preventDefault(), $("body").toggleClass("enlarge-menu")
+        });
+    }, [])
 
     return (
         <div className="topbar">

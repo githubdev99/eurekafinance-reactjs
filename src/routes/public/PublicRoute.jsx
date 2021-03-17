@@ -1,6 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
 
 const PublicRoute = ({ component: Component, location, authUser, ...rest }) => {
     return (

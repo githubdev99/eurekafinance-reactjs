@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { connect } from "react-redux";
+import React, { useState, useEffect, memo } from 'react';
 
 function Footer(props) {
     return (
@@ -9,8 +8,4 @@ function Footer(props) {
     )
 }
 
-const mapStateToProps = state => ({
-    baseUrl: state.baseUrl
-})
-
-export default connect(mapStateToProps, null)(Footer);
+export default memo(Footer);

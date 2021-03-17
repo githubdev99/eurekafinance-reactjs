@@ -3,7 +3,7 @@ const $ = window.$
 $(document).ready(function () {
 	let splitFullUrl = window.location.pathname.split('/')
 
-	if (splitFullUrl[1] != 'dashboard') {
+	if (splitFullUrl[1] !== 'dashboard') {
 		$('body').addClass('account-body accountbg');
 	} else {
 		$('body').addClass('dark-sidenav');
@@ -43,10 +43,6 @@ $(document).ready(function () {
 
 	$(".hide-element").each(function () {
 		$(this).hide();
-	});
-
-	$(".button-menu-mobile").on("click", function (e) {
-		e.preventDefault(), $("body").toggleClass("enlarge-menu")
 	});
 });
 

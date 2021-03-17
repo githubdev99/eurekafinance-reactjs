@@ -10,7 +10,6 @@ import {
     Redirect
 } from "react-router-dom";
 import { getCurrentDate } from '../../../../helper/custom'
-import { connect } from "react-redux";
 import { setTitlePage } from '../../../../redux/actions/Auth';
 
 function ForgotPassword() {
