@@ -8,8 +8,6 @@ import { ConnectedRouter, routerMiddleware, connectRouter } from 'connected-reac
 import App from "./App";
 
 const createBrowserHistory = require('history').createBrowserHistory;
-
-
 const history = createBrowserHistory();
 
 class Root extends Component {
