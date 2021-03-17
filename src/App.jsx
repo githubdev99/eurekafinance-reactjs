@@ -30,7 +30,7 @@ function MainApp() {
 
 function App() {
 	const dispatch = useDispatch()
-	const { titlePage, initURL, authUser, baseURL } = useSelector(({ auth }) => auth)
+	const reduxAuth = useSelector(({ auth }) => auth)
 
 	const location = useLocation();
 	const history = useHistory();
@@ -39,7 +39,19 @@ function App() {
 	const $ = window.$
 
 	useEffect(() => {
-		if (initURL === '') {
+		if (location.pathname === '/') {
+			if (reduxAuth.authUser) {
+				history.push('/login');
+			} else if (reduxAuth.initURL === '' || reduxAuth.initURL === '/' || reduxAuth.initURL === '/login') {
+				history.push('/dashboard');
+			} else {
+				history.push(reduxAuth.initURL);
+			}
+		}
+	}, [reduxAuth.authUser, reduxAuth.initURL, location, history]);
+
+	useEffect(() => {
+		if (reduxAuth.initURL === '') {
 			dispatch(setInitUrl(location.pathname));
 		}
 
@@ -76,27 +88,15 @@ function App() {
 		}
 	}, [])
 
-	useEffect(() => {
-		if (location.pathname === '/') {
-			if (authUser) {
-				history.push('/dashboard');
-			} else if (initURL === '' || initURL === '/' || initURL === '/login') {
-				history.push('/login');
-			} else {
-				history.push(initURL);
-			}
-		}
-	}, [authUser, initURL, location, history]);
-
 	return (
 		<Router>
 			<Helmet>
-				<link rel="icon" href={`${baseURL}${process.env.REACT_APP_LOGO_MINI}`} />
-				<link rel="apple-touch-icon" href={`${baseURL}${process.env.REACT_APP_LOGO_MINI}`} />
-				<title>{titlePage}</title>
+				<link rel="icon" href={`${reduxAuth.baseURL}${process.env.REACT_APP_LOGO_MINI}`} />
+				<link rel="apple-touch-icon" href={`${reduxAuth.baseURL}${process.env.REACT_APP_LOGO_MINI}`} />
+				<title>{reduxAuth.titlePage}</title>
 			</Helmet>
-			<PublicRoute path={`${match.url}`} authUser={authUser} location={location} component={ListPublicRoute} />
-			<PrivateRoute path={`${match.url}`} authUser={authUser} location={location} component={MainApp} />
+			<PublicRoute path={`${match.url}`} authUser={reduxAuth.authUser} location={location} component={ListPublicRoute} />
+			<PrivateRoute path={`${match.url}`} authUser={reduxAuth.authUser} location={location} component={MainApp} />
 		</Router>
 	);
 }

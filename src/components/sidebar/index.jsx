@@ -5,14 +5,14 @@ import { setTitlePage } from './../../redux/actions/Auth';
 
 function Sidebar(props) {
     const dispatch = useDispatch()
-    const { titlePage, initURL, authUser, baseURL } = useSelector(({ auth }) => auth)
+    const reduxAuth = useSelector(({ auth }) => auth)
 
     return (
         <div className="left-sidenav">
             <div className="brand mt-2">
                 <Link to="/dashboard" onClick={() => dispatch(setTitlePage('Dashboard'))} className="logo">
                     <span style={{ marginRight: 5 }}>
-                        <img src={`${baseURL}${process.env.REACT_APP_LOGO_MINI}`} alt="logo-small" className="logo-sm" style={{ width: 55, height: 50 }} />
+                        <img src={`${reduxAuth.baseURL}${process.env.REACT_APP_LOGO_MINI}`} alt="logo-small" className="logo-sm" style={{ width: 55, height: 50 }} />
                     </span>
                     <span className="text-white font-18">
                         {process.env.REACT_APP_NAME}
