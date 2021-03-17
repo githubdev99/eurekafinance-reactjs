@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment, memo } from 'react';
 import { Helmet } from "react-helmet";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { changeTitlePage, setInitUrl } from './redux/actions/Auth';
+import { setTitlePage, setInitUrl } from './redux/actions/Auth';
 import Sidebar from './components/sidebar/index';
 import Navbar from './components/navbar/index';
 import Footer from './components/footer/index';
@@ -52,27 +52,27 @@ function App() {
 		}
 
 		if (splitFullUrl[1] === 'dashboard') {
-			dispatch(changeTitlePage('Dashboard'));
+			dispatch(setTitlePage('Dashboard'));
 		} else if (splitFullUrl[1] === 'report') {
-			dispatch(changeTitlePage('Laporan'));
+			dispatch(setTitlePage('Laporan'));
 		} else if (splitFullUrl[1] === 'account') {
 			if (splitFullUrl[2] === 'chart') {
-				dispatch(changeTitlePage('Daftar Akun'));
+				dispatch(setTitlePage('Daftar Akun'));
 			} else {
-				dispatch(changeTitlePage('Kas & Bank'));
+				dispatch(setTitlePage('Kas & Bank'));
 			}
 		} else if (splitFullUrl[1] === 'expense') {
-			dispatch(changeTitlePage('Biaya'));
+			dispatch(setTitlePage('Biaya'));
 		} else if (splitFullUrl[1] === 'contact') {
-			dispatch(changeTitlePage('Kontak'));
+			dispatch(setTitlePage('Kontak'));
 		} else if (splitFullUrl[1] === 'product') {
-			dispatch(changeTitlePage('Produk'));
+			dispatch(setTitlePage('Produk'));
 		} else if (splitFullUrl[1] === 'asset') {
-			dispatch(changeTitlePage('Pengaturan Aset'));
+			dispatch(setTitlePage('Pengaturan Aset'));
 		} else if (splitFullUrl[1] === 'setting') {
-			dispatch(changeTitlePage('Pengaturan'));
+			dispatch(setTitlePage('Pengaturan'));
 		} else {
-			dispatch(changeTitlePage('Login'));
+			dispatch(setTitlePage('Login'));
 		}
 	}, [])
 

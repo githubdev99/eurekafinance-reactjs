@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { getCurrentDate } from '../../../../helper/custom'
 import { connect } from "react-redux";
-import { changeTitlePage } from '../../../../redux/actions/Auth';
+import { setTitlePage } from '../../../../redux/actions/Auth';
 
 function ForgotPassword() {
     const dispatch = useDispatch()
@@ -19,7 +19,7 @@ function ForgotPassword() {
     const $ = window.$
 
     useEffect(() => {
-        dispatch(changeTitlePage('Lupa Password'))
+        dispatch(setTitlePage('Lupa Password'))
     }, [])
 
     return (

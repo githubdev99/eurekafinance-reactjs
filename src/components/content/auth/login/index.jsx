@@ -9,7 +9,7 @@ import {
     useRouteMatch,
     Redirect
 } from "react-router-dom";
-import { changeTitlePage, setLoginUser } from './../../../../redux/actions/Auth';
+import { setTitlePage, setLoginUser } from './../../../../redux/actions/Auth';
 
 function Login() {
     const dispatch = useDispatch()
@@ -17,7 +17,7 @@ function Login() {
 
     useEffect(() => {
         <Redirect from="/" to="/login" />
-        dispatch(changeTitlePage('Login'))
+        dispatch(setTitlePage('Login'))
     }, [])
 
     return (

@@ -10,7 +10,7 @@ import {
     Redirect
 } from "react-router-dom";
 import { getCurrentDate, numberOnly } from '../../../../helper/custom'
-import { changeTitlePage } from './../../../../redux/actions/Auth';
+import { setTitlePage } from './../../../../redux/actions/Auth';
 
 function Register() {
     const dispatch = useDispatch()
@@ -18,7 +18,7 @@ function Register() {
     const $ = window.$
 
     useEffect(() => {
-        dispatch(changeTitlePage('Buat Akun'))
+        dispatch(setTitlePage('Buat Akun'))
 
         $(".select2").each(function () {
             $(this).select2();

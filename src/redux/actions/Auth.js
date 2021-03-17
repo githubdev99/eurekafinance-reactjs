@@ -4,7 +4,7 @@ import {
     LOGIN_USER
 } from "../Constant";
 
-export const changeTitlePage = (title) => {
+export const setTitlePage = (title) => {
     return {
         type: TITLE_PAGE,
         payload: title,

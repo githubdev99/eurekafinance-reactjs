@@ -40,7 +40,7 @@ export default (state = INIT_STATE, action) => {
     }
 }
 
-// export const changeTitlePageReducer = (state = '', action) => {
+// export const setTitlePageReducer = (state = '', action) => {
 //     if (action.type === 'CONFIG_TITLE_PAGE') state = action.payload;
 //     return `${state} | ${process.env.REACT_APP_NAME}`;
 // }
