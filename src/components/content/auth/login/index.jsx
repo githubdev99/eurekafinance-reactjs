@@ -55,7 +55,7 @@ function Login() {
                                             {/*end form-group*/}
                                             <div className="form-group mt-4 row">
                                                 <div className="col-12">
-                                                    <Link to="/dashboard" className="btn btn-primary btn-block waves-effect waves-light" type="button" name="login">Log in</Link>
+                                                    <Link to="/dashboard" className="btn btn-primary btn-block waves-effect waves-light" type="button" name="login" onClick={() => dispatch(setLoginUser(true))}>Log in</Link>
                                                 </div>
                                                 {/*end col*/}
                                             </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment, memo } from 'react';
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
-import { setTitlePage, setInitUrl } from './redux/actions/Auth';
+import { setTitlePage, setInitUrl, setLoginUser } from './redux/actions/Auth';
 import Sidebar from './components/sidebar/index';
 import Navbar from './components/navbar/index';
 import Footer from './components/footer/index';
