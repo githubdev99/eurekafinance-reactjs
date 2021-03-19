@@ -16,7 +16,7 @@ function Contact() {
 
     return (
         <Switch>
-            <Route exact path={path} render={() => <ContactList />} />
+            <Route exact path={path} component={ContactList} />
         </Switch>
     )
 }

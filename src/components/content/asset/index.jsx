@@ -15,7 +15,7 @@ function Asset() {
 
     return (
         <Switch>
-            <Route exact path={path} render={() => <AssetList />} />
+            <Route exact path={path} component={AssetList} />
         </Switch>
     )
 }

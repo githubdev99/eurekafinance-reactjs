@@ -16,7 +16,7 @@ function Product() {
 
     return (
         <Switch>
-            <Route exact path={path} render={() => <ProductList />} />
+            <Route exact path={path} component={ProductList} />
         </Switch>
     )
 }

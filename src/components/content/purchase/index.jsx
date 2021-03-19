@@ -16,7 +16,7 @@ function Purchase() {
 
     return (
         <Switch>
-            <Route exact path={path} render={() => <PurchaseList />} />
+            <Route exact path={path} component={PurchaseList} />
         </Switch>
     )
 }

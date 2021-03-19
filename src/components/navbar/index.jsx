@@ -368,19 +368,16 @@ function Navbar() {
                             <img src={`${stateAuth.baseURL}assets/images/users/user-5.jpg`} alt="profile-user" className="rounded-circle thumb-xs" />
                         </a>
                         <div className="dropdown-menu dropdown-menu-right">
-                            <a className="dropdown-item" href="javascript:;">
+                            <a className="dropdown-item" href="javascript:void(0);">
                                 <img src={`${stateAuth.baseURL}assets/images/icons/user.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Profil Akun
                             </a>
-                            <a className="dropdown-item" href="javascript:;">
+                            <a className="dropdown-item" href="javascript:void(0);">
                                 <img src={`${stateAuth.baseURL}assets/images/icons/settings.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Settings
                             </a>
                             <div className="dropdown-divider mb-0" />
-                            <a className="dropdown-item" href="javascript:;" onClick={() => {
-                                <Redirect to="/login" />
-                                dispatch(setLoginUser(false))
-                            }}>
+                            <Link to="/login" className="dropdown-item" href="javascript:void(0);">
                                 <img src={`${stateAuth.baseURL}assets/images/icons/power.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Logout
-                            </a>
+                            </Link>
                         </div>
                     </li>
                 </ul>

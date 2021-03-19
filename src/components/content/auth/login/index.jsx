@@ -16,7 +16,6 @@ function Login() {
     const stateAuth = useSelector(({ auth }) => auth)
 
     useEffect(() => {
-        <Redirect from="/" to="/login" />
         dispatch(setTitlePage('Login'))
     }, [])
 
@@ -56,10 +55,7 @@ function Login() {
                                             {/*end form-group*/}
                                             <div className="form-group mt-4 row">
                                                 <div className="col-12">
-                                                    <button className="btn btn-primary btn-block waves-effect waves-light" type="button" name="login" onClick={() => {
-                                                        <Redirect to="/dashboard" />
-                                                        dispatch(setLoginUser(true))
-                                                    }}>Log in</button>
+                                                    <Link to="/dashboard" className="btn btn-primary btn-block waves-effect waves-light" type="button" name="login">Log in</Link>
                                                 </div>
                                                 {/*end col*/}
                                             </div>
@@ -103,4 +99,4 @@ function Login() {
     )
 }
 
-export default memo(Login);
+export default memo(Login)

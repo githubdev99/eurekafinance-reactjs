@@ -1,15 +1,31 @@
 import React, { useState, useEffect, Fragment, memo } from 'react';
 import { Helmet } from "react-helmet";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setTitlePage, setInitUrl } from './redux/actions/Auth';
 import Sidebar from './components/sidebar/index';
 import Navbar from './components/navbar/index';
 import Footer from './components/footer/index';
-import { BrowserRouter as Router, useHistory, useLocation, useRouteMatch } from "react-router-dom";
-import PrivateRoute from './routes/private/PrivateRoute';
-import ListPrivateRoute from './routes/private';
-import PublicRoute from './routes/public/PublicRoute';
-import ListPublicRoute from './routes/public';
+import { BrowserRouter as Router, Route, Switch, useHistory, useLocation, useRouteMatch, withRouter, Redirect } from "react-router-dom";
+import MainRoute from './routes';
+import Login from './components/content/auth/login';
+import Register from './components/content/auth/register';
+import ForgotPassword from './components/content/auth/forgot_password';
+
+const RestrictedRoute = ({ component: Component, location, authUser, ...rest }) => {
+	return (
+		<Route
+			{...rest}
+			render={(props) => {
+				return authUser ? <Component {...props} /> : <Redirect
+					to={{
+						pathname: '/login',
+						state: { from: location }
+					}}
+				/>;
+			}}
+		/>
+	);
+};
 
 function MainApp() {
 	return (
@@ -19,7 +35,7 @@ function MainApp() {
 				<Navbar />
 				<div className="page-content" style={{ backgroundColor: '#f5f5f5' }}>
 					<div className="container-fluid">
-						<ListPrivateRoute />
+						<MainRoute />
 					</div>
 					<Footer />
 				</div>
@@ -40,7 +56,7 @@ function App() {
 
 	useEffect(() => {
 		if (location.pathname === '/') {
-			if (stateAuth.authUser) {
+			if (!stateAuth.authUser) {
 				history.push('/login');
 			} else if (stateAuth.initURL === '' || stateAuth.initURL === '/' || stateAuth.initURL === '/login') {
 				history.push('/dashboard');
@@ -51,16 +67,16 @@ function App() {
 	}, [stateAuth.authUser, stateAuth.initURL, location, history]);
 
 	useEffect(() => {
+		const splitFullUrl = window.location.pathname.split('/')
+
 		if (stateAuth.initURL === '') {
 			dispatch(setInitUrl(location.pathname));
 		}
 
-		const splitFullUrl = window.location.pathname.split('/')
-
-		if (splitFullUrl[1] !== 'dashboard') {
-			$('body').addClass('account-body accountbg');
-		} else {
+		if (stateAuth.authUser) {
 			$('body').addClass('dark-sidenav');
+		} else {
+			$('body').addClass('account-body accountbg');
 		}
 
 		if (splitFullUrl[1] === 'dashboard') {
@@ -95,10 +111,14 @@ function App() {
 				<link rel="apple-touch-icon" href={`${stateAuth.baseURL}${process.env.REACT_APP_LOGO_MINI}`} />
 				<title>{stateAuth.titlePage}</title>
 			</Helmet>
-			<PublicRoute path={`${match.url}`} authUser={stateAuth.authUser} location={location} component={ListPublicRoute} />
-			<PrivateRoute path={`${match.url}`} authUser={stateAuth.authUser} location={location} component={MainApp} />
+			<Switch>
+				<Route path="/login" component={Login} />
+				<Route path="/register" component={Register} />
+				<Route path="/forgot-password" component={ForgotPassword} />
+				<RestrictedRoute path={`${match.url}`} authUser={stateAuth.authUser} location={location} component={MainApp} />
+			</Switch>
 		</Router>
 	);
 }
 
-export default memo(App);
+export default withRouter(memo(App))

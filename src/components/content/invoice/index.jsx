@@ -16,7 +16,7 @@ function Invoice() {
 
     return (
         <Switch>
-            <Route exact path={path} render={() => <InvoiceList />} />
+            <Route exact path={path} component={InvoiceList} />
         </Switch>
     )
 }

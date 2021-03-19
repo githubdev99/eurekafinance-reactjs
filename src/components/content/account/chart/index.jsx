@@ -15,7 +15,7 @@ function AccountChart() {
 
     return (
         <Switch>
-            <Route exact path={path} render={() => <AccountChartList />} />
+            <Route exact path={path} component={AccountChartList} />
         </Switch>
     )
 }

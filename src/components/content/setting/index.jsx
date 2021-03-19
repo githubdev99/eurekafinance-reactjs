@@ -1,3 +1,5 @@
+/* eslint-disable no-script-url */
+/* eslint-disable jsx-a11y/role-supports-aria-props */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Fragment } from 'react'
 import {
@@ -15,7 +17,7 @@ function Setting() {
 
     return (
         <Switch>
-            <Route exact path={path} render={() => <SettingList />} />
+            <Route exact path={path} component={SettingList} />
         </Switch>
     )
 }
@@ -53,12 +55,12 @@ function SettingList() {
                                 <div className="menu-content h-100" data-simplebar>
                                     <ul className="metismenu left-sidenav-menu" style={{ padding: '0px !important' }}>
                                         <li>
-                                            <a href="javascript: void(0);" className="custom-nav-mini">
+                                            <a href="javascript:void(0);" className="custom-nav-mini">
                                                 <i className="mdi mdi-monitor-dashboard align-self-center" /><span>Dashboard</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript: void(0);" className="custom-nav-mini">
+                                            <a href="javascript:void(0);" className="custom-nav-mini">
                                                 <i data-feather="file-plus" className="align-self-center menu-icon" /><span>Pages</span><span className="menu-arrow"><i className="mdi mdi-chevron-right" /></span>
                                             </a>
                                             <ul className="nav-second-level" aria-expanded="false">

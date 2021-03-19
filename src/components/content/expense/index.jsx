@@ -16,7 +16,7 @@ function Expense() {
 
     return (
         <Switch>
-            <Route exact path={path} render={() => <ExpenseList />} />
+            <Route exact path={path} component={ExpenseList} />
         </Switch>
     )
 }
