@@ -9,7 +9,7 @@ import {
     useRouteMatch,
     Redirect
 } from "react-router-dom";
-import { getCurrentDate, numberOnly } from '../../../../helper/custom'
+import { getCurrentDate, inputNumberOnly } from '../../../../helper/custom'
 import { setTitlePage } from './../../../../redux/actions/Auth';
 
 function Register() {
@@ -102,13 +102,13 @@ function Register() {
                                             {/*end form-group*/}
                                             <div className="form-group mb-2">
                                                 <label htmlFor="confirm_password">Konfirmasi Password</label>
-                                                <input type="password" className="form-control" name="confirm_password" id="confirm_password" required />
+                                                <input type="password" className="form-control" name="confirm_password" id="confirm_password" required pattern="[0-9]*" />
                                                 <small className="form-text text-danger" id="errorConfirmPassword" />
                                             </div>
                                             {/*end form-group*/}
                                             <div className="form-group mb-2">
                                                 <label htmlFor="phone_number">Nomor Telepon</label>
-                                                <input type="text" className="form-control" name="phone_number" id="phone_number" required />
+                                                <input type="text" className="form-control" name="phone_number" id="phone_number" required onKeyPress={inputNumberOnly} />
                                                 <small className="form-text text-muted">Hanya berisi angka (0-9)</small>
                                             </div>
                                             {/*end form-group*/}

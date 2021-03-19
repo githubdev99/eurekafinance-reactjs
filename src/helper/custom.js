@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import { useState, useEffect } from 'react';
 
 function getWindowDimensions() {
@@ -37,4 +38,22 @@ export const getCurrentDate = (separator) => {
     let year = newDate.getFullYear();
 
     return `${date}${separator}${month < 10 ? `0${month}` : `${month}`}${separator}${year}`
+}
+
+export const inputNumberOnly = (event) => {
+    var theEvent = event || window.event;
+
+    // Handle paste
+    if (theEvent.type === "paste") {
+        key = window.event.clipboardData.getData("text/plain");
+    } else {
+        // Handle key press
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+    }
+    var regex = /[0-9]|\./;
+    if (!regex.test(key)) {
+        theEvent.returnValue = false;
+        if (theEvent.preventDefault) theEvent.preventDefault();
+    }
 }
