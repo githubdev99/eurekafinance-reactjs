@@ -30,7 +30,7 @@ function MainApp() {
 
 function App() {
 	const dispatch = useDispatch()
-	const reduxAuth = useSelector(({ auth }) => auth)
+	const stateAuth = useSelector(({ auth }) => auth)
 
 	const location = useLocation();
 	const history = useHistory();
@@ -40,18 +40,18 @@ function App() {
 
 	useEffect(() => {
 		if (location.pathname === '/') {
-			if (reduxAuth.authUser) {
+			if (stateAuth.authUser) {
 				history.push('/login');
-			} else if (reduxAuth.initURL === '' || reduxAuth.initURL === '/' || reduxAuth.initURL === '/login') {
+			} else if (stateAuth.initURL === '' || stateAuth.initURL === '/' || stateAuth.initURL === '/login') {
 				history.push('/dashboard');
 			} else {
-				history.push(reduxAuth.initURL);
+				history.push(stateAuth.initURL);
 			}
 		}
-	}, [reduxAuth.authUser, reduxAuth.initURL, location, history]);
+	}, [stateAuth.authUser, stateAuth.initURL, location, history]);
 
 	useEffect(() => {
-		if (reduxAuth.initURL === '') {
+		if (stateAuth.initURL === '') {
 			dispatch(setInitUrl(location.pathname));
 		}
 
@@ -91,12 +91,12 @@ function App() {
 	return (
 		<Router>
 			<Helmet>
-				<link rel="icon" href={`${reduxAuth.baseURL}${process.env.REACT_APP_LOGO_MINI}`} />
-				<link rel="apple-touch-icon" href={`${reduxAuth.baseURL}${process.env.REACT_APP_LOGO_MINI}`} />
-				<title>{reduxAuth.titlePage}</title>
+				<link rel="icon" href={`${stateAuth.baseURL}${process.env.REACT_APP_LOGO_MINI}`} />
+				<link rel="apple-touch-icon" href={`${stateAuth.baseURL}${process.env.REACT_APP_LOGO_MINI}`} />
+				<title>{stateAuth.titlePage}</title>
 			</Helmet>
-			<PublicRoute path={`${match.url}`} authUser={reduxAuth.authUser} location={location} component={ListPublicRoute} />
-			<PrivateRoute path={`${match.url}`} authUser={reduxAuth.authUser} location={location} component={MainApp} />
+			<PublicRoute path={`${match.url}`} authUser={stateAuth.authUser} location={location} component={ListPublicRoute} />
+			<PrivateRoute path={`${match.url}`} authUser={stateAuth.authUser} location={location} component={MainApp} />
 		</Router>
 	);
 }

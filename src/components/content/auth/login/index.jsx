@@ -13,7 +13,7 @@ import { setTitlePage, setLoginUser } from './../../../../redux/actions/Auth';
 
 function Login() {
     const dispatch = useDispatch()
-    const reduxAuth = useSelector(({ auth }) => auth)
+    const stateAuth = useSelector(({ auth }) => auth)
 
     useEffect(() => {
         <Redirect from="/" to="/login" />
@@ -32,7 +32,7 @@ function Login() {
                                     <div className="card-body p-0 auth-header-box">
                                         <div className="text-center p-3">
                                             <a href="index-2.html" className="logo logo-admin">
-                                                <img src={`${reduxAuth.baseURL}${process.env.REACT_APP_LOGO_MINI}`} height={50} alt="logo" className="auth-logo" />
+                                                <img src={`${stateAuth.baseURL}${process.env.REACT_APP_LOGO_MINI}`} height={50} alt="logo" className="auth-logo" />
                                             </a>
                                             <h4 className="mt-3 mb-1 font-weight-semibold text-white font-18">{process.env.REACT_APP_NAME}</h4>
                                             <p className="text-muted  mb-0">Log in untuk melanjutkan ke {process.env.REACT_APP_NAME}.</p>
@@ -70,7 +70,7 @@ function Login() {
                                             <h6 className="mb-3">Atau</h6>
                                         </div>
                                         <div className="text-center">
-                                            <button className="btn btn-light btn-block waves-effect waves-light" type="button"><i className="mr-3"><img src={`${reduxAuth.baseURL}assets/images/logo-google.svg`} alt="logo-google" /></i>Log in dengan Google </button>
+                                            <button className="btn btn-light btn-block waves-effect waves-light" type="button"><i className="mr-3"><img src={`${stateAuth.baseURL}assets/images/logo-google.svg`} alt="logo-google" /></i>Log in dengan Google </button>
                                         </div>
                                         <div className="m-3 text-center text-muted">
                                             <p className="mb-0">
