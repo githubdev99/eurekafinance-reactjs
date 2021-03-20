@@ -62,10 +62,7 @@ function SettingList() {
                             <div className="card-body">
                                 <div className="menu-content h-100" data-simplebar>
                                     <ul className="metismenu left-sidenav-menu" style={{ padding: '0px !important' }}>
-                                        <li>import {useDispatch} from 'react-redux';
-import {useDispatch} from 'react-redux';
-import {useEffect} from 'react';
-
+                                        <li>
                                             <a href="javascript:void(0);" className="custom-nav-mini">
                                                 <i className="mdi mdi-monitor-dashboard align-self-center" /><span>Dashboard</span>
                                             </a>

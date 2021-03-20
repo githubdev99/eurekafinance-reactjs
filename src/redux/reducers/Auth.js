@@ -12,7 +12,7 @@ const INIT_STATE = {
     baseURL: getUrl + slash,
     initURL: '',
     titlePage: '',
-    authUser: true,
+    authUser: false,
 };
 
 export default (state = INIT_STATE, action) => {

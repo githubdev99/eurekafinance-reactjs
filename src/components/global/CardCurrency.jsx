@@ -24,7 +24,7 @@ function CardCurrency(props) {
         if (props.setting.limit === 'col-lg-3') {
             limitLength = (width < 1400) ? 20 : 35;
         } else {
-            limitLength = 35;
+            limitLength = (width < 1400) ? 35 : 60;
         }
 
         if (text.length > limitLength) {

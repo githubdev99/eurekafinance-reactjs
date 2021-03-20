@@ -245,7 +245,7 @@ function Dashboard() {
                                     </div>
                                     <div className="activity-info">
                                         <div className="icon-info-activity">
-                                            <img src="assets/images/users/user-5.jpg" alt className="rounded-circle thumb-sm" />
+                                            <img src="assets/images/users/user-5.jpg" alt="icon" className="rounded-circle thumb-sm" />
                                         </div>
                                         <div className="activity-info-text">
                                             <div className="d-flex justify-content-between align-items-center">
@@ -284,7 +284,7 @@ function Dashboard() {
                                     </div>
                                     <div className="activity-info">
                                         <div className="icon-info-activity">
-                                            <img src="assets/images/users/user-4.jpg" alt className="rounded-circle thumb-sm" />
+                                            <img src="assets/images/users/user-4.jpg" alt="icon" className="rounded-circle thumb-sm" />
                                         </div>
                                         <div className="activity-info-text">
                                             <div className="d-flex justify-content-between align-items-center">
@@ -405,35 +405,35 @@ function Dashboard() {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><img src="assets/images/browser_logo/chrome.png" alt height={16} className="mr-2" />Chrome</td>
+                                            <td><img src="assets/images/browser_logo/chrome.png" alt="icon" height={16} className="mr-2" />Chrome</td>
                                             <td>10853<small className="text-muted">(52%)</small></td>
                                             <td> 52.80%</td>
                                             <td>566<small className="text-muted">(92%)</small></td>
                                         </tr>
                                         {/*end tr*/}
                                         <tr>
-                                            <td><img src="assets/images/browser_logo/micro-edge.png" alt height={16} className="mr-2" />Microsoft Edge</td>
+                                            <td><img src="assets/images/browser_logo/micro-edge.png" alt="icon" height={16} className="mr-2" />Microsoft Edge</td>
                                             <td>2545<small className="text-muted">(47%)</small></td>
                                             <td> 47.54%</td>
                                             <td>498<small className="text-muted">(81%)</small></td>
                                         </tr>
                                         {/*end tr*/}
                                         <tr>
-                                            <td><img src="assets/images/browser_logo/in-explorer.png" alt height={16} className="mr-2" />Internet-Explorer</td>
+                                            <td><img src="assets/images/browser_logo/in-explorer.png" alt="icon" height={16} className="mr-2" />Internet-Explorer</td>
                                             <td>1836<small className="text-muted">(38%)</small></td>
                                             <td> 41.12%</td>
                                             <td>455<small className="text-muted">(74%)</small></td>
                                         </tr>
                                         {/*end tr*/}
                                         <tr>
-                                            <td><img src="assets/images/browser_logo/opera.png" alt height={16} className="mr-2" />Opera</td>
+                                            <td><img src="assets/images/browser_logo/opera.png" alt="icon" height={16} className="mr-2" />Opera</td>
                                             <td>1958<small className="text-muted">(31%)</small></td>
                                             <td> 36.82%</td>
                                             <td>361<small className="text-muted">(61%)</small></td>
                                         </tr>
                                         {/*end tr*/}
                                         <tr>
-                                            <td><img src="assets/images/browser_logo/chrome.png" alt height={16} className="mr-2" />Chrome</td>
+                                            <td><img src="assets/images/browser_logo/chrome.png" alt="icon" height={16} className="mr-2" />Chrome</td>
                                             <td>10853<small className="text-muted">(52%)</small></td>
                                             <td> 52.80%</td>
                                             <td>566<small className="text-muted">(92%)</small></td>

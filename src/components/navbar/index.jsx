@@ -3,13 +3,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect, memo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { setLoginUser } from './../../redux/actions/Auth';
-import { Redirect } from 'react-router-dom';
 
 function Navbar() {
     const dispatch = useDispatch()
     const stateAuth = useSelector(({ auth }) => auth)
+    const history = useHistory()
+
     const $ = window.$
 
     useEffect(() => {
@@ -17,6 +18,12 @@ function Navbar() {
             e.preventDefault(), $("body").toggleClass("enlarge-menu")
         });
     }, [])
+
+    const doLogout = () => {
+        dispatch(setLoginUser(false));
+
+        history.push('/login')
+    }
 
     return (
         <div className="topbar">
@@ -375,7 +382,7 @@ function Navbar() {
                                 <img src={`${stateAuth.baseURL}assets/images/icons/settings.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Settings
                             </a>
                             <div className="dropdown-divider mb-0" />
-                            <Link to="/login" className="dropdown-item" onClick={() => dispatch(setLoginUser(false))}>
+                            <Link className="dropdown-item" onClick={doLogout}>
                                 <img src={`${stateAuth.baseURL}assets/images/icons/power.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Logout
                             </Link>
                         </div>

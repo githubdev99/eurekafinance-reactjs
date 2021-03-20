@@ -7,7 +7,7 @@ import {
     Link,
     useParams,
     useRouteMatch,
-    useHistory
+    useHistory,
 } from "react-router-dom";
 import { setTitlePage, setLoginUser } from './../../../../redux/actions/Auth';
 
@@ -23,6 +23,12 @@ function Login() {
             history.push('/dashboard');
         }
     }, [])
+
+    const doLogin = () => {
+        dispatch(setLoginUser(true));
+
+        history.push('/dashboard')
+    }
 
     return (
         <Fragment>
@@ -60,7 +66,7 @@ function Login() {
                                             {/*end form-group*/}
                                             <div className="form-group mt-4 row">
                                                 <div className="col-12">
-                                                    <Link to="/dashboard" className="btn btn-primary btn-block waves-effect waves-light" type="button" name="login" onClick={() => dispatch(setLoginUser(true))}>Log in</Link>
+                                                    <button className="btn btn-primary btn-block waves-effect waves-light" type="button" name="login" onClick={doLogin}>Log in</button>
                                                 </div>
                                                 {/*end col*/}
                                             </div>
