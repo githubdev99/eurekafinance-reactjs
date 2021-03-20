@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import { getCurrentDate } from '../../../helper/custom'
 import CardTransaction from '../../global/CardTransaction'
+import { useDispatch } from 'react-redux';
+import { setTitlePage } from '../../../redux/actions/Auth';
 
 function Contact() {
     let { path, url } = useRouteMatch();
@@ -22,11 +24,14 @@ function Contact() {
 }
 
 function ContactList() {
+    const dispatch = useDispatch()
+
     const $ = window.$
 
     useEffect(() => {
-        $('[data-toggle="tooltip"]').tooltip()
+        dispatch(setTitlePage('Kontak'));
 
+        $('[data-toggle="tooltip"]').tooltip()
         $("#tableDefault").DataTable()
     }, [])
 

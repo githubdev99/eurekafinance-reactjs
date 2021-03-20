@@ -9,6 +9,8 @@ import {
     useRouteMatch
 } from "react-router-dom";
 import { getCurrentDate } from '../../../helper/custom'
+import { useDispatch } from 'react-redux';
+import { setTitlePage } from '../../../redux/actions/Auth';
 
 function Asset() {
     let { path, url } = useRouteMatch();
@@ -21,9 +23,13 @@ function Asset() {
 }
 
 function AssetList() {
+    const dispatch = useDispatch()
+
     const $ = window.$
 
     useEffect(() => {
+        dispatch(setTitlePage('Pengaturan Aset'));
+
         $('[data-toggle="tooltip"]').tooltip()
 
         $("#tablePendingAsset").DataTable()

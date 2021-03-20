@@ -1,7 +1,7 @@
 /* eslint-disable no-script-url */
 /* eslint-disable jsx-a11y/role-supports-aria-props */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, memo } from 'react'
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,6 +11,8 @@ import {
     useRouteMatch
 } from "react-router-dom";
 import { getCurrentDate } from '../../../helper/custom'
+import { useDispatch } from 'react-redux';
+import { setTitlePage } from '../../../redux/actions/Auth';
 
 function Setting() {
     let { path, url } = useRouteMatch();
@@ -23,6 +25,12 @@ function Setting() {
 }
 
 function SettingList() {
+    const dispatch = useDispatch()
+    const $ = window.$
+
+    useEffect(() => {
+        dispatch(setTitlePage('Pengaturan'));
+    }, [])
     return (
         <Fragment>
             <div className="row">
@@ -54,7 +62,10 @@ function SettingList() {
                             <div className="card-body">
                                 <div className="menu-content h-100" data-simplebar>
                                     <ul className="metismenu left-sidenav-menu" style={{ padding: '0px !important' }}>
-                                        <li>
+                                        <li>import {useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {useEffect} from 'react';
+
                                             <a href="javascript:void(0);" className="custom-nav-mini">
                                                 <i className="mdi mdi-monitor-dashboard align-self-center" /><span>Dashboard</span>
                                             </a>

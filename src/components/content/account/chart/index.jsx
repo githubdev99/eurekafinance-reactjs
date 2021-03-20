@@ -9,6 +9,8 @@ import {
     useRouteMatch
 } from "react-router-dom";
 import { getCurrentDate } from './../../../../helper/custom'
+import { useDispatch } from "react-redux";
+import { setTitlePage } from './../../../../redux/actions/Auth';
 
 function AccountChart() {
     let { path, url } = useRouteMatch();
@@ -21,9 +23,13 @@ function AccountChart() {
 }
 
 function AccountChartList() {
+    const dispatch = useDispatch()
+
     const $ = window.$
 
     useEffect(() => {
+        dispatch(setTitlePage('Daftar Akun'));
+
         $('[data-toggle="tooltip"]').tooltip()
         $("#tableDefault").DataTable()
     }, [])

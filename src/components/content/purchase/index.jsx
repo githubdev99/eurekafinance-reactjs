@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import { getCurrentDate } from '../../../helper/custom'
 import CardCurrency from '../../global/CardCurrency'
+import { useDispatch } from 'react-redux';
+import { setTitlePage } from '../../../redux/actions/Auth';
 
 function Purchase() {
     let { path, url } = useRouteMatch();
@@ -22,9 +24,13 @@ function Purchase() {
 }
 
 function PurchaseList() {
+    const dispatch = useDispatch()
+
     const $ = window.$
 
     useEffect(() => {
+        dispatch(setTitlePage('Pembelian'));
+
         $('[data-toggle="tooltip"]').tooltip()
 
         $("#tableFakturPembelian").DataTable()

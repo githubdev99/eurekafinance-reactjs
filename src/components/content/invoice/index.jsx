@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 import { getCurrentDate } from '../../../helper/custom'
 import CardCurrency from '../../global/CardCurrency'
+import { useDispatch } from 'react-redux';
+import { setTitlePage } from '../../../redux/actions/Auth';
 
 function Invoice() {
     let { path, url } = useRouteMatch();
@@ -22,11 +24,14 @@ function Invoice() {
 }
 
 function InvoiceList() {
+    const dispatch = useDispatch()
+
     const $ = window.$
 
     useEffect(() => {
-        $('[data-toggle="tooltip"]').tooltip()
+        dispatch(setTitlePage('Penjualan'));
 
+        $('[data-toggle="tooltip"]').tooltip()
         $("#tableFakturPenjualan").DataTable()
         $("#tablePengirimanPenjualan").DataTable()
         $("#tablePemesananPenjualan").DataTable()

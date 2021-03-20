@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment, memo } from 'react';
 import { Helmet } from "react-helmet";
 import { useDispatch, useSelector } from "react-redux";
-import { setTitlePage, setInitUrl, setLoginUser } from './redux/actions/Auth';
+import { setTitlePage, setInitUrl } from './redux/actions/Auth';
 import Sidebar from './components/sidebar/index';
 import Navbar from './components/navbar/index';
 import Footer from './components/footer/index';
@@ -91,6 +91,10 @@ function App() {
 			dispatch(setTitlePage('Produk'));
 		} else if (splitFullUrl[1] === 'asset') {
 			dispatch(setTitlePage('Pengaturan Aset'));
+		} else if (splitFullUrl[1] === 'invoice') {
+			dispatch(setTitlePage('Penjualan'));
+		} else if (splitFullUrl[1] === 'purchase') {
+			dispatch(setTitlePage('Pembelian'));
 		} else if (splitFullUrl[1] === 'setting') {
 			dispatch(setTitlePage('Pengaturan'));
 		} else if (splitFullUrl[1] === 'register') {
@@ -121,7 +125,7 @@ function App() {
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/register" component={Register} />
 				<Route exact path="/forgot-password" component={ForgotPassword} />
-				<RestrictedRoute path={`${match.url}`} authUser={stateAuth.authUser} location={location} component={withRouter(MainApp)} />
+				<RestrictedRoute path={`${match.url}`} authUser={stateAuth.authUser} location={location} component={MainApp} />
 			</Switch>
 		</Router>
 	);

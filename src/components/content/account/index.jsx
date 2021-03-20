@@ -11,6 +11,8 @@ import {
 import { getCurrentDate } from '../../../helper/custom'
 import CardCurrency from '../../global/CardCurrency'
 import AccountChart from './chart/index'
+import { useDispatch } from "react-redux";
+import { setTitlePage } from '../../../redux/actions/Auth';
 
 function Account() {
     let { path, url } = useRouteMatch();
@@ -24,9 +26,13 @@ function Account() {
 }
 
 function AccountList() {
+    const dispatch = useDispatch()
+
     const $ = window.$
 
     useEffect(() => {
+        dispatch(setTitlePage('Kas & Bank'));
+
         $('[data-toggle="tooltip"]').tooltip()
         $("#tableDefault").DataTable()
     }, [])
