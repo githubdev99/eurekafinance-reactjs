@@ -7,22 +7,25 @@ import {
     Link,
     useParams,
     useRouteMatch,
-    Redirect
+    useHistory
 } from "react-router-dom";
 import { getCurrentDate, inputNumberOnly } from '../../../../helper/custom'
 import { setTitlePage } from './../../../../redux/actions/Auth';
+import SelectOption from './../../../global/SelectOption';
 
 function Register() {
     const dispatch = useDispatch()
     const stateAuth = useSelector(({ auth }) => auth)
+    const history = useHistory()
+
     const $ = window.$
 
     useEffect(() => {
         dispatch(setTitlePage('Buat Akun'))
 
-        $(".select2").each(function () {
-            $(this).select2();
-        });
+        if (stateAuth.authUser) {
+            history.push('/dashboard');
+        }
 
         $(() => {
             var w = window,
@@ -75,14 +78,28 @@ function Register() {
                                         <form action="true" method="post" encType="multipart/form-data" name="register">
                                             <div className="form-group mb-2">
                                                 <label htmlFor="company_name">Pilih Perusahaan</label>
-                                                <select className="select2 form-control mb-3 custom-select" style={{ width: '100%' }} data-placeholder="Pilih salah satu" name="company_name" id="company_name" required>
-                                                    <option />
-                                                    <option value={1}>PT. Eureka Bookhouse</option>
-                                                    <option value={1}>PT. Eureka Logistics</option>
-                                                    <option value={1}>PT. Master Diskon Internasional</option>
-                                                    <option value={1}>PT. Jaja.id</option>
-                                                    <option value={1}>Kata Rasa</option>
-                                                </select>
+                                                <SelectOption options={[
+                                                    {
+                                                        value: 1,
+                                                        label: 'PT. Eureka Bookhouse'
+                                                    },
+                                                    {
+                                                        value: 2,
+                                                        label: 'PT. Eureka Logistics'
+                                                    },
+                                                    {
+                                                        value: 3,
+                                                        label: 'PT. Master Diskon Internasional'
+                                                    },
+                                                    {
+                                                        value: 4,
+                                                        label: 'PT. Jaja.id'
+                                                    },
+                                                    {
+                                                        value: 5,
+                                                        label: 'Kata Rasa'
+                                                    },
+                                                ]} />
                                             </div>
                                             {/*end form-group*/}
                                             <div className="form-group mb-2">

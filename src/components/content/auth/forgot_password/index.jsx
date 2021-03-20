@@ -7,7 +7,8 @@ import {
     Link,
     useParams,
     useRouteMatch,
-    Redirect
+    Redirect,
+    useHistory
 } from "react-router-dom";
 import { getCurrentDate } from '../../../../helper/custom'
 import { setTitlePage } from '../../../../redux/actions/Auth';
@@ -15,10 +16,16 @@ import { setTitlePage } from '../../../../redux/actions/Auth';
 function ForgotPassword() {
     const dispatch = useDispatch()
     const stateAuth = useSelector(({ auth }) => auth)
+    const history = useHistory()
+
     const $ = window.$
 
     useEffect(() => {
         dispatch(setTitlePage('Lupa Password'))
+
+        if (stateAuth.authUser) {
+            history.push('/dashboard');
+        }
     }, [])
 
     return (

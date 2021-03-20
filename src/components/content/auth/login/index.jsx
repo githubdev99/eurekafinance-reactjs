@@ -7,16 +7,21 @@ import {
     Link,
     useParams,
     useRouteMatch,
-    Redirect
+    useHistory
 } from "react-router-dom";
 import { setTitlePage, setLoginUser } from './../../../../redux/actions/Auth';
 
 function Login() {
     const dispatch = useDispatch()
     const stateAuth = useSelector(({ auth }) => auth)
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(setTitlePage('Login'))
+
+        if (stateAuth.authUser) {
+            history.push('/dashboard');
+        }
     }, [])
 
     return (

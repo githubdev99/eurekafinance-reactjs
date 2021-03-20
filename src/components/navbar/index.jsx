@@ -375,7 +375,7 @@ function Navbar() {
                                 <img src={`${stateAuth.baseURL}assets/images/icons/settings.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Settings
                             </a>
                             <div className="dropdown-divider mb-0" />
-                            <Link to="/login" className="dropdown-item" href="javascript:void(0);">
+                            <Link to="/login" className="dropdown-item" onClick={() => dispatch(setLoginUser(false))}>
                                 <img src={`${stateAuth.baseURL}assets/images/icons/power.svg`} alt="icon-feather" className="align-self-center icon-xs icon-dual mr-1" /> Logout
                             </Link>
                         </div>

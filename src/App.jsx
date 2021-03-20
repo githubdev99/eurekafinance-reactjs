@@ -5,7 +5,7 @@ import { setTitlePage, setInitUrl, setLoginUser } from './redux/actions/Auth';
 import Sidebar from './components/sidebar/index';
 import Navbar from './components/navbar/index';
 import Footer from './components/footer/index';
-import { BrowserRouter as Router, Route, Switch, useHistory, useLocation, useRouteMatch, withRouter, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useHistory, useLocation, useRouteMatch, Redirect, withRouter } from "react-router-dom";
 import MainRoute from './routes';
 import Login from './components/content/auth/login';
 import Register from './components/content/auth/register';
@@ -58,7 +58,7 @@ function App() {
 		if (location.pathname === '/') {
 			if (!stateAuth.authUser) {
 				history.push('/login');
-			} else if (stateAuth.initURL === '' || stateAuth.initURL === '/' || stateAuth.initURL === '/login') {
+			} else if (stateAuth.initURL === '' || stateAuth.initURL === '/' || stateAuth.initURL === '/login' || stateAuth.initURL === '/register' || stateAuth.initURL === '/forgot-password') {
 				history.push('/dashboard');
 			} else {
 				history.push(stateAuth.initURL);
@@ -71,12 +71,6 @@ function App() {
 
 		if (stateAuth.initURL === '') {
 			dispatch(setInitUrl(location.pathname));
-		}
-
-		if (stateAuth.authUser) {
-			$('body').addClass('dark-sidenav');
-		} else {
-			$('body').addClass('account-body accountbg');
 		}
 
 		if (splitFullUrl[1] === 'dashboard') {
@@ -99,10 +93,22 @@ function App() {
 			dispatch(setTitlePage('Pengaturan Aset'));
 		} else if (splitFullUrl[1] === 'setting') {
 			dispatch(setTitlePage('Pengaturan'));
+		} else if (splitFullUrl[1] === 'register') {
+			dispatch(setTitlePage('Buat Akun'));
+		} else if (splitFullUrl[1] === '/forgot-password') {
+			dispatch(setTitlePage('Lupa Password'));
 		} else {
 			dispatch(setTitlePage('Login'));
 		}
 	}, [])
+
+	useEffect(() => {
+		if (stateAuth.authUser) {
+			$('body').addClass('dark-sidenav');
+		} else {
+			$('body').addClass('account-body accountbg');
+		}
+	})
 
 	return (
 		<Router>
@@ -112,10 +118,10 @@ function App() {
 				<title>{stateAuth.titlePage}</title>
 			</Helmet>
 			<Switch>
-				<Route path="/login" component={Login} />
-				<Route path="/register" component={Register} />
-				<Route path="/forgot-password" component={ForgotPassword} />
-				<RestrictedRoute path={`${match.url}`} authUser={stateAuth.authUser} location={location} component={MainApp} />
+				<Route exact path="/login" component={Login} />
+				<Route exact path="/register" component={Register} />
+				<Route exact path="/forgot-password" component={ForgotPassword} />
+				<RestrictedRoute path={`${match.url}`} authUser={stateAuth.authUser} location={location} component={withRouter(MainApp)} />
 			</Switch>
 		</Router>
 	);
