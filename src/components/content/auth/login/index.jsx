@@ -10,14 +10,18 @@ import {
     useHistory,
 } from "react-router-dom";
 import { setTitlePage, setLoginUser } from './../../../../redux/actions/Auth';
+import { Spinner } from 'react-bootstrap';
 
 function Login() {
     const dispatch = useDispatch()
     const stateAuth = useSelector(({ auth }) => auth)
     const history = useHistory()
+    const $ = window.$
 
     useEffect(() => {
         dispatch(setTitlePage('Login'))
+
+        $('.spinner-border').hide()
 
         if (stateAuth.authUser) {
             history.push('/dashboard');
@@ -27,7 +31,15 @@ function Login() {
     const doLogin = () => {
         dispatch(setLoginUser(true));
 
-        history.push('/dashboard')
+        $(`button[name="${document.activeElement.name}"]`).attr('disabled', 'true');
+        $(`button[name="${document.activeElement.name}"] .spinner-border`).show();
+
+        setTimeout(() => {
+            $(`button[name="${document.activeElement.name}"]`).removeAttr('disabled');
+            $(`button[name="${document.activeElement.name}"]`).html(document.activeElement.textContent)
+
+            history.push('/dashboard')
+        }, 2000);
     }
 
     return (
@@ -66,7 +78,17 @@ function Login() {
                                             {/*end form-group*/}
                                             <div className="form-group mt-4 row">
                                                 <div className="col-12">
-                                                    <button className="btn btn-primary btn-block waves-effect waves-light" type="button" name="login" onClick={doLogin}>Log in</button>
+                                                    <button className="btn btn-primary btn-block waves-effect waves-light" type="button" name="login" onClick={doLogin}>
+                                                        <Spinner
+                                                            as="span"
+                                                            animation="border"
+                                                            size="sm"
+                                                            role="status"
+                                                            aria-hidden="true"
+                                                            className="mr-2"
+                                                        />
+                                                        Log in
+                                                    </button>
                                                 </div>
                                                 {/*end col*/}
                                             </div>
