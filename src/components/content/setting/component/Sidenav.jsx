@@ -9,10 +9,14 @@ function Sidenav(props) {
     useEffect(() => {
         $(`.with-dropdown`).click(function (e) {
             e.preventDefault();
-            if ($(this).next('.dropdown-sidenav-menu').hasClass('sidenav-menu-show')) {
-                $(this).next('.dropdown-sidenav-menu').removeClass('sidenav-menu-show').slideUp('400');
+
+            let elementDropdown = $(this).next('.dropdown-sidenav-menu');
+            if (elementDropdown.hasClass('sidenav-menu-show')) {
+                elementDropdown.removeClass('sidenav-menu-show').slideUp('400');
+                $(this).find('.menu-arrow').css('transform', 'none');
             } else {
-                $(this).next('.dropdown-sidenav-menu').addClass('sidenav-menu-show').slideDown('400');
+                elementDropdown.addClass('sidenav-menu-show').slideDown('400');
+                $(this).find('.menu-arrow').css('transform', 'rotate(90deg)');
             }
         });
     }, [])
