@@ -3,7 +3,7 @@ import { rupiah, useWindowDimensions } from './../../helper/custom';
 
 function CardCurrency(props) {
     const { height, width } = useWindowDimensions()
-    const [title, set_title] = useState('')
+    const [title, settitle] = useState('')
     let isMouseEnter = false
 
     const mouseEnter = () => {
@@ -43,7 +43,7 @@ function CardCurrency(props) {
             }
         }
 
-        set_title(limitText)
+        settitle(limitText)
     }
 
     useEffect(() => {

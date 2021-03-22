@@ -13,6 +13,7 @@ import {
 import { getCurrentDate } from '../../../helper/custom'
 import { useDispatch } from 'react-redux';
 import { setTitlePage } from '../../../redux/actions/Auth';
+import Sidenav from './component/Sidenav';
 
 function Setting() {
     let { path, url } = useRouteMatch();
@@ -26,11 +27,11 @@ function Setting() {
 
 function SettingList() {
     const dispatch = useDispatch()
-    const $ = window.$
 
     useEffect(() => {
         dispatch(setTitlePage('Pengaturan'));
     }, [])
+
     return (
         <Fragment>
             <div className="row">
@@ -60,7 +61,7 @@ function SettingList() {
                     <div className="email-leftbar">
                         <div className="card">
                             <div className="card-body">
-                                disini sidenav
+                                <Sidenav />
                             </div>{/* end card-body */}
                         </div>{/* end card */}
                     </div>

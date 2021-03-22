@@ -21,11 +21,11 @@ function Login() {
     useEffect(() => {
         dispatch(setTitlePage('Login'))
 
-        $('.spinner-border').hide()
-
         if (stateAuth.authUser) {
             history.push('/dashboard');
         }
+
+        $('.spinner-border').hide()
     }, [])
 
     const doLogin = () => {
