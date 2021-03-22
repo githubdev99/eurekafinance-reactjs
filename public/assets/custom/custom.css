@@ -258,3 +258,7 @@
 .dropdown-sidenav-menu li.sidenav-menu-item a:hover {
 	color: #212121 !important;
 }
+
+.dropdown-sidenav-menu {
+	display: none;
+}

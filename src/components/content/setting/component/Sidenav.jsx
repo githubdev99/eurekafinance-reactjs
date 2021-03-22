@@ -1,3 +1,5 @@
+/* eslint-disable no-script-url */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -5,6 +7,14 @@ function Sidenav(props) {
     const $ = window.$
 
     useEffect(() => {
+        $(`.with-dropdown`).click(function (e) {
+            e.preventDefault();
+            if ($(this).next('.dropdown-sidenav-menu').hasClass('sidenav-menu-show')) {
+                $(this).next('.dropdown-sidenav-menu').removeClass('sidenav-menu-show').slideUp('400');
+            } else {
+                $(this).next('.dropdown-sidenav-menu').addClass('sidenav-menu-show').slideDown('400');
+            }
+        });
     }, [])
 
     return (
@@ -16,10 +26,10 @@ function Sidenav(props) {
                     </Link>
                 </li>
                 <li className="mb-2">
-                    <Link to="/dashboard" className={`custom-nav-mini`}>
+                    <a href="javascript:void(0);" className={`custom-nav-mini with-dropdown`}>
                         <i className="fas fa-tags align-self-center" /><span>Penjualan</span>
                         <span class="menu-arrow"><i class="mdi mdi-chevron-right text-black-50"></i></span>
-                    </Link>
+                    </a>
                     <ul className="dropdown-sidenav-menu">
                         <li className="sidenav-menu-item active">
                             <a href="#sales">
@@ -44,10 +54,10 @@ function Sidenav(props) {
                     </Link>
                 </li>
                 <li className="mb-2">
-                    <Link to="/dashboard" className={`custom-nav-mini`}>
+                    <a href="javascript:void(0);" className={`custom-nav-mini with-dropdown`}>
                         <i className="far fa-file-alt align-self-center" /><span>Template</span>
                         <span class="menu-arrow"><i class="mdi mdi-chevron-right text-black-50"></i></span>
-                    </Link>
+                    </a>
                     <ul className="dropdown-sidenav-menu">
                         <li class="menu-label">TEMPLATE EMAIL</li>
                         <li className="sidenav-menu-item active">

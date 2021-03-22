@@ -24,8 +24,6 @@ function Login() {
         if (stateAuth.authUser) {
             history.push('/dashboard');
         }
-
-        $('.spinner-border').hide()
     }, [])
 
     const doLogin = () => {
@@ -86,6 +84,7 @@ function Login() {
                                                             role="status"
                                                             aria-hidden="true"
                                                             className="mr-2"
+                                                            style={{ display: 'none' }}
                                                         />
                                                         Log in
                                                     </button>
