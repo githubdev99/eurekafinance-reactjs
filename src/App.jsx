@@ -106,14 +106,6 @@ function App() {
 		}
 	}, [])
 
-	useEffect(() => {
-		if (stateAuth.authUser) {
-			$('body').addClass('dark-sidenav');
-		} else {
-			$('body').addClass('account-body accountbg');
-		}
-	})
-
 	return (
 		<Router>
 			<Helmet>
