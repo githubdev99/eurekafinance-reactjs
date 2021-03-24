@@ -25,7 +25,7 @@ function Sidenav(props) {
         <div className="menu-content h-100" data-simplebar>
             <ul className="metismenu left-sidenav-menu" style={{ padding: 0 }}>
                 <li className="mb-2">
-                    <Link to="/dashboard" className={`custom-nav-mini text-white active`}>
+                    <Link to="/setting/company" className={`custom-nav-mini text-white ${(props.splitFullUrl[2] === 'company') ? 'active' : ''}`}>
                         <i className="fas fa-building align-self-center" /><span>Perusahaan</span>
                     </Link>
                 </li>
