@@ -37,17 +37,7 @@ const RestrictedRoute = ({ component: Component, location, authUser, ...rest }) 
 	);
 };
 
-function MainApp(props) {
-	const [initRoute, setinitRoute] = useState('')
-
-	useEffect(() => {
-		if (props.location.pathname === '/') {
-			setinitRoute('/')
-		} else {
-			setinitRoute('/dashboard')
-		}
-	}, [])
-
+function MainApp() {
 	return (
 		<Fragment>
 			<Sidebar splitFullUrl={window.location.pathname.split('/')} />
@@ -56,7 +46,7 @@ function MainApp(props) {
 				<div className="page-content" style={{ backgroundColor: '#f5f5f5' }}>
 					<div className="container-fluid">
 						<Switch>
-							<Route path={initRoute} component={Dashboard} />
+							<Route path="/dashboard" component={Dashboard} />
 							<Route path="/account" component={Account} />
 							<Route path="/invoice" component={Invoice} />
 							<Route path="/purchase" component={Purchase} />
