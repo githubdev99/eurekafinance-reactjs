@@ -37,7 +37,7 @@ const RestrictedRoute = ({ component: Component, location, authUser, ...rest }) 
 	);
 };
 
-function MainApp() {
+function MainApp(props) {
 	return (
 		<Fragment>
 			<Sidebar splitFullUrl={window.location.pathname.split('/')} />
@@ -46,6 +46,7 @@ function MainApp() {
 				<div className="page-content" style={{ backgroundColor: '#f5f5f5' }}>
 					<div className="container-fluid">
 						<Switch>
+							{(props.location.pathname === '/') ? <Redirect to="/dashboard" /> : ''}
 							<Route path="/dashboard" component={Dashboard} />
 							<Route path="/account" component={Account} />
 							<Route path="/invoice" component={Invoice} />
