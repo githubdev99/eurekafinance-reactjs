@@ -6,10 +6,20 @@ import Sidebar from './components/sidebar/index';
 import Navbar from './components/navbar/index';
 import Footer from './components/footer/index';
 import { BrowserRouter as Router, Route, Switch, useHistory, useLocation, useRouteMatch, Redirect, withRouter } from "react-router-dom";
-import MainRoute from './routes';
+
 import Login from './components/content/auth/login';
 import Register from './components/content/auth/register';
 import ForgotPassword from './components/content/auth/forgot_password';
+
+import Dashboard from './components/content/dashboard';
+import Account from './components/content/account';
+import Invoice from './components/content/invoice';
+import Purchase from './components/content/purchase';
+import Expense from './components/content/expense';
+import Contact from './components/content/contact';
+import Product from './components/content/product';
+import Asset from './components/content/asset';
+import Setting from './components/content/setting';
 
 const RestrictedRoute = ({ component: Component, location, authUser, ...rest }) => {
 	return (
@@ -27,7 +37,17 @@ const RestrictedRoute = ({ component: Component, location, authUser, ...rest }) 
 	);
 };
 
-function MainApp() {
+function MainApp(props) {
+	const [initRoute, setinitRoute] = useState('')
+
+	useEffect(() => {
+		if (props.location.pathname === '/') {
+			setinitRoute('/')
+		} else {
+			setinitRoute('/dashboard')
+		}
+	}, [])
+
 	return (
 		<Fragment>
 			<Sidebar splitFullUrl={window.location.pathname.split('/')} />
@@ -35,7 +55,17 @@ function MainApp() {
 				<Navbar />
 				<div className="page-content" style={{ backgroundColor: '#f5f5f5' }}>
 					<div className="container-fluid">
-						<MainRoute />
+						<Switch>
+							<Route path={initRoute} component={Dashboard} />
+							<Route path="/account" component={Account} />
+							<Route path="/invoice" component={Invoice} />
+							<Route path="/purchase" component={Purchase} />
+							<Route path="/expense" component={Expense} />
+							<Route path="/contact" component={Contact} />
+							<Route path="/product" component={Product} />
+							<Route path="/asset" component={Asset} />
+							<Route path="/setting" component={Setting} />
+						</Switch>
 					</div>
 					<Footer />
 				</div>
@@ -117,7 +147,7 @@ function App() {
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/register" component={Register} />
 				<Route exact path="/forgot-password" component={ForgotPassword} />
-				<RestrictedRoute path={`${match.url}`} authUser={stateAuth.authUser} location={location} component={MainApp} />
+				<RestrictedRoute path={`${match.url}`} authUser={stateAuth.authUser} location={location} history={history} component={MainApp} />
 			</Switch>
 		</Router>
 	);
