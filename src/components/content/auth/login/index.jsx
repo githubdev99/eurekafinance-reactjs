@@ -27,7 +27,7 @@ function Login() {
     }, [])
 
     const doLogin = () => {
-        dispatch(setLoginUser(true));
+        dispatch(setLoginUser(1));
 
         $(`button[name="${document.activeElement.name}"]`).attr('disabled', 'true');
         $(`button[name="${document.activeElement.name}"] .spinner-border`).show();

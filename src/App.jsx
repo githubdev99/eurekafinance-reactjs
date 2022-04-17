@@ -125,6 +125,8 @@ function App() {
 		} else {
 			dispatch(setTitlePage('Login'));
 		}
+
+		console.log(stateAuth.authUser);
 	}, [])
 
 	return (

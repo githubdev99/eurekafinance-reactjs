@@ -20,7 +20,7 @@ function Navbar() {
     }, [])
 
     const doLogout = () => {
-        dispatch(setLoginUser(false));
+        dispatch(setLoginUser(0));
 
         history.push('/login')
     }

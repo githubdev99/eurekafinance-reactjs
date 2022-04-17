@@ -19,8 +19,10 @@ export const setInitUrl = (url) => {
 }
 
 export const setLoginUser = (auth) => {
+    localStorage.setItem('authUser', Number(auth))
+
     return {
         type: LOGIN_USER,
-        payload: auth
+        payload: Number(auth)
     };
 }
